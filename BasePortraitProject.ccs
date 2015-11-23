@@ -1,0 +1,28 @@
+<Solution>
+  <PropertyGroup Name="BasePortraitProject" Version="2.3.2.3" Type="CocosStudio" />
+  <SolutionFolder>
+    <Group ctype="ResourceGroup">
+      <RootFolder Name=".">
+        <Project Name="SplashScreen.csd" Type="Scene" />
+        <Project Name="GameScene.csd" Type="Scene" />
+        <Project Name="LeaderBoard.csd" Type="Scene" />
+        <Folder Name="Sprites">
+          <Folder Name="Elfs">
+            <Image Name="ElfHit.png" />
+            <Image Name="ElfMissed.png" />
+            <Image Name="RarerElfUnTouched.png" />
+            <Image Name="RegularElfUnTouched.png" />
+          </Folder>
+          <Folder Name="Room">
+            <Image Name="GameBoardScreen.png" />
+            <Image Name="LeaderBoard.png" />
+            <Image Name="MainMenu.png" />
+            <Image Name="SplashScreen.png" />
+          </Folder>
+        </Folder>
+        <Project Name="Elf.csd" Type="Node" />
+        <Project Name="MainMenu.csd" Type="Scene" />
+      </RootFolder>
+    </Group>
+  </SolutionFolder>
+</Solution>
