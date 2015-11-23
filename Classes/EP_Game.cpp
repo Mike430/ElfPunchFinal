@@ -1,5 +1,6 @@
 #include "EP_Game.h"
-
+//CHRIS Don't forget to ADD, COMMIT, PUSH
+//SIDE NOTE, totally almost forgot to mention -A
 
 EP_Game::EP_Game(GameManager* previousGame)
 {
