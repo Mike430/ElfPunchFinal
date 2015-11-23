@@ -48,6 +48,8 @@ bool HelloWorld::init()
 	//_credits->addTouchEventListener(CC_CALLBACK_2(HelloWorld::CreditsButtonPressed, this));
 	//_exit->addTouchEventListener(CC_CALLBACK_2(HelloWorld::ExitButtonPressed, this));
 
+	//Mike Branch Test
+
     return true;
 }
 
