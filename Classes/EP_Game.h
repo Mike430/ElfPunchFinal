@@ -2,6 +2,7 @@
 #ifndef __EP_GAME_H__
 #define __EP_GAME_H__
 #define ELF_NUMBER 11
+#define ELF_APPEAR 50
 
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
@@ -18,7 +19,9 @@ class EP_Game : public cocos2d::Layer
 private:
 	GameManager* _gameManager;
 	Elf* _elfs[ELF_NUMBER]; // one for each hole in the game board
-	int _numOfElfs; // number of times the elfs will poke up
+
+	//int _numOfElfs; // number of times the elfs will poke up
+	Elf*  _elves[ELF_APPEAR];//This ^ would be better hardcoded like this
 	float _speed;
 	bool _running;
 	cocos2d::Size _winSize;

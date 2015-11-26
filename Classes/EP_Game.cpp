@@ -19,7 +19,10 @@ EP_Game::EP_Game(GameManager* previousGame)
 
 	//Extract information from the GameManager
 	_gameManager = previousGame;
-	_numOfElfs = _gameManager->GetNumOfElfs();
+	//===================================================//
+	//==COMMENTED OUT BELOW STATMENT SEE .H FOR DETAILS==//
+	//_numOfElfs = _gameManager->GetNumOfElfs();
+	//===================================================//
 	_speed = _gameManager->GetSpeed();
 	_gameManager->ResetScore();
 

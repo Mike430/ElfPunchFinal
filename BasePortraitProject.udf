@@ -31,8 +31,8 @@
     <Item Key="TabsParamsKey">
       <Value ctype="TabsInfo">
         <OpenedDocuments>
-          <FilePathData Path="SplashScreen.csd" />
           <FilePathData Path="MainMenu.csd" />
+          <FilePathData Path="LeaderBoard.csd" />
         </OpenedDocuments>
         <ActiveDocument Path="MainMenu.csd" />
       </Value>
