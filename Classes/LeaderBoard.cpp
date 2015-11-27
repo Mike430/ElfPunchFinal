@@ -39,6 +39,9 @@ cocos2d::Scene* LeaderBoard::GetScene()
 //=========================================//
 void LeaderBoard::ReturnButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type)
 {
+	/*'Should' make it so when the button pressed on the leaderboard
+	Scene changes back to the main menu*/
 	MainMenu* nextScene = new MainMenu(_gameManager);
 	cocos2d::CCDirector::getInstance()->replaceScene(nextScene->GetScene());
 }
+//=========================================//

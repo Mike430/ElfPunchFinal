@@ -8,7 +8,7 @@ EP_Game::EP_Game(GameManager* previousGame)
 	_scene = EP_Game::createGame();
 	_rootNode = cocos2d::CSLoader::createNode("GameScene.csb");
 	_scene->addChild(_rootNode);
-	//_scene = _rootNode->getScene();// This does not work for reasons currently unknown
+
 
 
 	//What does this do???
@@ -41,6 +41,7 @@ cocos2d::Scene* EP_Game::createGame()
 //=========================================//
 EP_Game::~EP_Game()
 {
+	//TO BE CONTINUED....
 }
 //=========================================//
 cocos2d::Scene* EP_Game::GetScene()
@@ -74,13 +75,4 @@ void EP_Game::update(float deltaTime)
 		}
 	}
 }
-
-
-
-/*
 //=========================================//
-//==DELETED COMMENTS IN CASE STILL NEEDED==//
-//=========================================//
-
-
-*/

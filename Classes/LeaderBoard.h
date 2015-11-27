@@ -13,12 +13,12 @@ class LeaderBoard : public cocos2d::Layer
 {
 private:
 	GameManager* _gameManager;
-	//cocos2d calls for scene and buttons
+	//cocos2d scene and buttons
 	cocos2d::Scene* _scene;
 	cocos2d::Node* _rootNode;
 	cocos2d::ui::Button* _return;
 public:
-	//Constructor-Destructor
+	//Constructor - Destructor
 	LeaderBoard(GameManager* gameManager);
 	~LeaderBoard();
 	//Sets up the Leaderboard scene
