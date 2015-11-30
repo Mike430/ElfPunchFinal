@@ -1,6 +1,8 @@
 //INCLUDES
 #include "EP_Game.h"
 //=========================================//
+USING_NS_CC;
+//=========================================//
 EP_Game::EP_Game(GameManager* previousGame)
 {
 	//Scene Setter
@@ -8,11 +10,11 @@ EP_Game::EP_Game(GameManager* previousGame)
 	_rootNode = cocos2d::CSLoader::createNode("GameScene.csb");
 	_scene->addChild(_rootNode);
 
-
-
+	//tEST
+	this->schedule(schedule_selector(EP_Game::update));
 
 	//What does this do???
-	this->scheduleUpdate();
+	//this->scheduleUpdate();
 
 
 
@@ -29,6 +31,14 @@ EP_Game::EP_Game(GameManager* previousGame)
 	_running = false;
 	StartGame();
 }
+//=========================================//
+bool EP_Game::init()
+{
+	//this->scheduleUpdate();
+	this->schedule(schedule_selector(EP_Game::update));
+	return true;
+}
+
 //=========================================//
 cocos2d::Scene* EP_Game::createGame()
 {
@@ -54,14 +64,14 @@ cocos2d::Scene* EP_Game::GetScene()
 //=========================================//
 void EP_Game::StartGame()
 {
-	Sleep(3000); // give a countdown to the game beginning
+	//Sleep(3000); // give a countdown to the game beginning
 	_running = true;
 	//update(float deltaTime);
 }
 //=========================================//
 void EP_Game::update(float deltaTime)
 {
-	Sleep(3000);
+	//Sleep(3000);
 	EndGame();
 
 /*
@@ -86,6 +96,7 @@ void EP_Game::update(float deltaTime)
 //=========================================//
 void EP_Game::EndGame()
 {
+	_running = false;
 	LeaderBoard* nextScene = new LeaderBoard(_gameManager);
 	cocos2d::CCDirector::getInstance()->replaceScene(nextScene->GetScene());
 }

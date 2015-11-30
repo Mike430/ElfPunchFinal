@@ -32,12 +32,13 @@ public:
 	//Constructor - Destructor
 	EP_Game(GameManager* previousGame);
 	~EP_Game();
+	bool init();
 	//Sets up the Game Scene
 	static cocos2d::Scene* createGame();
 	cocos2d::Scene* GetScene();
 	//Game Related Functions
 	void StartGame();
-	void update(float deltaTime);
+	virtual void update(float deltaTime);
 	void EndGame();
 };
 #endif
