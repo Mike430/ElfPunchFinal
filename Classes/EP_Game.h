@@ -9,6 +9,7 @@
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "GameManager.h"
+#include "LeaderBoard.h"
 #include "Elf.h"
 //=========================================//
 using namespace std;
@@ -37,5 +38,6 @@ public:
 	//Game Related Functions
 	void StartGame();
 	void update(float deltaTime);
+	void EndGame();
 };
 #endif

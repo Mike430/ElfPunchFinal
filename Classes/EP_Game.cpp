@@ -1,6 +1,5 @@
 //INCLUDES
 #include "EP_Game.h"
-#include "LeaderBoard.h"
 //=========================================//
 EP_Game::EP_Game(GameManager* previousGame)
 {
@@ -11,13 +10,17 @@ EP_Game::EP_Game(GameManager* previousGame)
 
 
 
+
 	//What does this do???
 	this->scheduleUpdate();
+
+
+
+
+	//Create Random number.
 	srand(time(NULL));
+	//Get Device Screen Size
 	_winSize = cocos2d::Director::getInstance()->getVisibleSize();
-
-
-
 	//Extract information from the GameManager
 	_gameManager = previousGame;
 	_speed = _gameManager->GetSpeed();
@@ -53,12 +56,15 @@ void EP_Game::StartGame()
 {
 	Sleep(3000); // give a countdown to the game beginning
 	_running = true;
+	//update(float deltaTime);
 }
 //=========================================//
 void EP_Game::update(float deltaTime)
 {
-	if (_running)
-	{
+	Sleep(3000);
+	EndGame();
+
+/*
 		// Update the game
 		for (int i = 0; i < ELF_NUMBER; i++)
 		{
@@ -71,8 +77,15 @@ void EP_Game::update(float deltaTime)
 				// in this part we will test the probability
 				// of the elf waking up. Then call "elf[i]->GetUp();"
 				// no need to set the elf's alive state here
-			}*/
+			}		
+
 		}
-	}
+*/
+
 }
 //=========================================//
+void EP_Game::EndGame()
+{
+	LeaderBoard* nextScene = new LeaderBoard(_gameManager);
+	cocos2d::CCDirector::getInstance()->replaceScene(nextScene->GetScene());
+}

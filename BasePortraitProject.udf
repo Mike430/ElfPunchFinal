@@ -33,8 +33,9 @@
         <OpenedDocuments>
           <FilePathData Path="LeaderBoard.csd" />
           <FilePathData Path="MainMenu.csd" />
+          <FilePathData Path="GameScene.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="LeaderBoard.csd" />
+        <ActiveDocument Path="GameScene.csd" />
       </Value>
     </Item>
   </Properties>
