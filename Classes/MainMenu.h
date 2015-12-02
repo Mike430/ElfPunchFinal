@@ -11,8 +11,8 @@
 class MainMenu : public cocos2d::Layer
 {
 private:
-	GameManager* _gameManager;
-	cocos2d::Scene* _scene;
+	//GameManager* _gameManager;
+	cocos2d::Sprite* _backdrop;
 	cocos2d::Node* _rootNode;
 
 	cocos2d::ui::Button* _begin;
@@ -20,10 +20,9 @@ private:
 	cocos2d::ui::Button* _credits;
 	cocos2d::ui::Button* _exit;
 public:
-	MainMenu(GameManager* gameManager);
-	~MainMenu();
+	CREATE_FUNC(MainMenu);
 	static cocos2d::Scene* createScene();
-	cocos2d::Scene* GetScene();
+	virtual bool init();
 
 	void BeginButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
 	void SettingsButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);

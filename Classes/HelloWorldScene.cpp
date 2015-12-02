@@ -55,10 +55,10 @@ bool HelloWorld::init()
 
 void HelloWorld::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
-	GameManager* gameManager = new GameManager();
-	gameManager->SetNumOfElfs(50);// parse in an integer that represents the number of times in one game an elf will pop up
-	gameManager->SetSpeed(40.0f);// parse in a percentage
-	gameManager->ResetScore();
-	MainMenu* mainMenu = new MainMenu(gameManager);
-	CCDirector::getInstance()->replaceScene(mainMenu->GetScene());
+	//GameManager* gameManager = new GameManager();
+	//gameManager->SetNumOfElfs(50);// parse in an integer that represents the number of times in one game an elf will pop up
+	//gameManager->SetSpeed(40.0f);// parse in a percentage
+	//gameManager->ResetScore();
+	Scene* mainMenu = MainMenu::createScene();
+	CCDirector::getInstance()->replaceScene(mainMenu);
 }
