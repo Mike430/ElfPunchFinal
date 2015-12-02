@@ -21,22 +21,15 @@ private:
 	int _numOfElfs; // number of times the elfs will poke up
 	float _speed;
 	bool _running;
-	cocos2d::Size _winSize;
+	bool _gameOver;
 
-	cocos2d::Scene* _scene;
+	cocos2d::Size _winSize;
 	cocos2d::Node* _rootNode;
 public:
-	EP_Game(GameManager* previousGame);
-	~EP_Game();
-	// See HelloWorld.h for the original versions of these methods
+	CREATE_FUNC(EP_Game);
 	static cocos2d::Scene* createScene();
-	//virtual bool init();
-	//void Init();
-	cocos2d::Scene* GetScene();
-
-	void StartGame();
-
-	void update(float deltaTime);
+	virtual bool init();
+	void update(float);
 };
 
 #endif
