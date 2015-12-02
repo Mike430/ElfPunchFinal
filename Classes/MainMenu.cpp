@@ -8,7 +8,7 @@ bool MainMenu::init()
 	_rootNode = cocos2d::CSLoader::createNode("MainMenu.csb");
 	this->addChild(_rootNode);
 
-	//_gameManager = gameManager;
+	_gameManager = GameManager::GetInstance();
 
 	_backdrop = (cocos2d::Sprite*)_rootNode->getChildByName("Default");
 	_begin = (cocos2d::ui::Button*)_rootNode->getChildByName("BEGIN");

@@ -11,7 +11,7 @@
 class MainMenu : public cocos2d::Layer
 {
 private:
-	//GameManager* _gameManager;
+	static GameManager* _gameManager;
 	cocos2d::Sprite* _backdrop;
 	cocos2d::Node* _rootNode;
 

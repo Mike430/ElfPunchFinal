@@ -1,35 +1,45 @@
 #include "GameManager.h"
 
+GameManager* GameManager::_instance = nullptr;
 
 GameManager::GameManager()
 {
 	//Default Setting
-	_score = 0;
-	_numOfElfs = 50;
-	_speed = 30.0f;
+	_instance->_score = 0;
+	_instance->_numOfElfs = 50;
+	_instance->_speed = 30.0f;
 }
 
 
 GameManager::~GameManager()
 {
+	delete _instance;
+	_instance = nullptr;
 }
 
+GameManager* GameManager::GetInstance()
+{
+	if (_instance == nullptr)
+		_instance = new GameManager();
+
+	return _instance;
+}
 
 // Scoring
 //======================================================================
 int GameManager::GetScore()
 {
-	return _score;
+	return _instance->_score;
 }
 
 void GameManager::AddToScore(int increment)
 {
-	_score += increment;
+	_instance->_score += increment;
 }
 
 void GameManager::ResetScore()
 {
-	_score = 0;
+	_instance->_score = 0;
 }
 
 
@@ -37,12 +47,12 @@ void GameManager::ResetScore()
 //======================================================================
 void GameManager::SetNumOfElfs(int numOfElfs)
 {
-	_numOfElfs = numOfElfs;
+	_instance->_numOfElfs = numOfElfs;
 }
 
 int GameManager::GetNumOfElfs()
 {
-	return _numOfElfs;
+	return _instance->_numOfElfs;
 }
 
 

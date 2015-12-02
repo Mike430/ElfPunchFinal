@@ -10,8 +10,11 @@ private:
 	int _score;
 	int _numOfElfs;// number of times the elfs will poke up
 	float _speed;// a percentage that will represent the rate at which elfs will appear
-public:
+	static GameManager* _instance;
+
 	GameManager();
+public:
+	GameManager* GetInstance();
 	~GameManager();
 
 	// Scoring
