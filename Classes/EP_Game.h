@@ -8,10 +8,10 @@
 #include "ui/CocosGUI.h"
 #include "GameManager.h"
 #include "Elf.h"
+#include <string.h>
+#include <sstream>
 
 using namespace std;
-
-
 
 class EP_Game : public cocos2d::Layer
 {
@@ -23,6 +23,11 @@ private:
 	bool _running;
 	bool _gameOver;
 
+	int _frameCount;
+	std::string _countStr;
+
+	cocos2d::ui::Text* _frameCounter;
+	cocos2d::Sprite* _backdrop;
 	cocos2d::Size _winSize;
 	cocos2d::Node* _rootNode;
 public:

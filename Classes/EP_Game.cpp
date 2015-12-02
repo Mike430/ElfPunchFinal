@@ -23,12 +23,14 @@ bool EP_Game::init()
 	this->addChild(_rootNode);
 
 	// get components from level
-
+	_backdrop = (cocos2d::Sprite*)_rootNode->getChildByName("GameBoardScreen_1");
+	_frameCounter = (cocos2d::ui::Text*)_rootNode->getChildByName("Frame_Counter");
 
 	srand(time(NULL));
 	_winSize = cocos2d::Director::getInstance()->getVisibleSize();
 	//_gameManager = GameManager::GetInstance();
 	_running = true;
+	_frameCount = 0;
 
 	this->scheduleUpdate();
 
@@ -40,6 +42,15 @@ void EP_Game::update(float deltaTime)
 	if (_running)
 	{
 		// Update the game
+		_frameCount += 1;
+
+		if (_frameCount >= 1000)
+			_frameCount = 0;
+
+		std::ostringstream convert;
+		convert << _frameCount;
+		_countStr = "Frame_Count: " + convert.str();
+		_frameCounter->setString(_countStr);
 	}
 	if (_gameOver)
 	{
