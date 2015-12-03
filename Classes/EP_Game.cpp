@@ -50,16 +50,17 @@ void EP_Game::update(float deltaTime)
 	{
 		// Update the game
 		_frameCount += 1;
+		GameManager::GetInstance()->AddToScore(10);
 
 		//TRANSITION TEST 
-		if (_frameCount >= 500)
+		if (GameManager::GetInstance()->GetScore() >= 500)
 		{
 			EndGame();
 		}
 
 		std::ostringstream convert;
-		convert << _frameCount;
-		_countStr = "Frame_Count: " + convert.str();
+		convert << GameManager::GetInstance()->GetScore();
+		_countStr = "Score: " + convert.str();
 		_frameCounter->setString(_countStr);
 	}
 	if (_gameOver)

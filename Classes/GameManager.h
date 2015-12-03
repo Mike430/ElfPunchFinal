@@ -14,7 +14,7 @@ private:
 
 	GameManager();
 public:
-	GameManager* GetInstance();
+	static GameManager* GetInstance();
 	~GameManager();
 
 	// Scoring

@@ -5,9 +5,9 @@ GameManager* GameManager::_instance = nullptr;
 GameManager::GameManager()
 {
 	//Default Setting
-	_instance->_score = 0;
-	_instance->_numOfElfs = 50;
-	_instance->_speed = 30.0f;
+	_score = 0;
+	_numOfElfs = 50;
+	_speed = 30.0f;
 }
 
 
