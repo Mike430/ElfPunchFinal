@@ -33,10 +33,10 @@
         <OpenedDocuments>
           <FilePathData Path="SplashScreen.csd" />
           <FilePathData Path="MainMenu.csd" />
-          <FilePathData Path="LeaderBoard.csd" />
           <FilePathData Path="GameScene.csd" />
+          <FilePathData Path="LeaderBoard.csd" />
         </OpenedDocuments>
-        <ActiveDocument Path="GameScene.csd" />
+        <ActiveDocument Path="LeaderBoard.csd" />
       </Value>
     </Item>
   </Properties>
