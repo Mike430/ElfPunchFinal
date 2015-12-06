@@ -10,16 +10,28 @@
 #include <string.h>
 #include <sstream>
 #include "GameManager.h"
-#include "Elf.h"
+//#include "Elf.h"
 #include "LeaderBoard.h"
 //=========================================//
 using namespace std;
 //=========================================//
+
+struct Elfs
+{
+	cocos2d::Node* _loadedNode;
+	cocos2d::Vec2 _position;// primary example for ambiguity **mark**
+
+	float _startingYPos;
+	cocos2d::Sprite* _character;
+	bool _isAlive;// should the elf have it's update method used?
+	bool _isUp;// should the elf be up or down it's hole on the table?
+};
+
 class EP_Game : public cocos2d::Layer
 {
 private:
 	GameManager* _gameManager;
-	Elf* _elfs[ELF_NUMBER]; // one for each hole in the game board
+	Elfs* _elfs[ELF_NUMBER]; // one for each hole in the game board
 	int _numOfElfs; // number of times the elfs will poke up
 	float _speed;
 	bool _running;

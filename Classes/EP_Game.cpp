@@ -32,7 +32,32 @@ bool EP_Game::init()
 	_winSize = cocos2d::Director::getInstance()->getVisibleSize();
 	
 	
-	//_gameManager = GameManager::GetInstance();
+	for (int i = 0; i < ELF_NUMBER; i++)
+	{
+		_elfs[i] = new Elfs();
+		_elfs[i]->_isAlive = false;
+		_elfs[i]->_isUp = false;
+		_elfs[i]->_position.x = 0.0f;
+		_elfs[i]->_position.y = 0.0f;
+	}
+	
+	_elfs[0]->_loadedNode = _rootNode->getChildByName("Elf_1");
+	_elfs[1]->_loadedNode = _rootNode->getChildByName("Elf_2");
+	_elfs[2]->_loadedNode = _rootNode->getChildByName("Elf_3");
+	_elfs[3]->_loadedNode = _rootNode->getChildByName("Elf_4");
+	_elfs[4]->_loadedNode = _rootNode->getChildByName("Elf_5");
+	_elfs[5]->_loadedNode = _rootNode->getChildByName("Elf_6");
+	_elfs[6]->_loadedNode = _rootNode->getChildByName("Elf_7");
+	_elfs[7]->_loadedNode = _rootNode->getChildByName("Elf_8");
+	_elfs[8]->_loadedNode = _rootNode->getChildByName("Elf_9");
+	_elfs[9]->_loadedNode = _rootNode->getChildByName("Elf_10");
+	_elfs[10]->_loadedNode = _rootNode->getChildByName("Elf_11");
+
+	for (int i = 0; i < ELF_NUMBER; i++)
+	{
+		_elfs[i]->_position = _elfs[i]->_loadedNode->getPosition();
+		_elfs[i]->_startingYPos = _elfs[i]->_position.y;
+	}
 	
 	
 	_running = true;
@@ -51,6 +76,12 @@ void EP_Game::update(float deltaTime)
 		// Update the game
 		_frameCount += 1;
 		GameManager::GetInstance()->AddToScore(10);
+
+		for (int i = 0; i < ELF_NUMBER; i++)
+		{
+			float previousX = _elfs[i]->_loadedNode->getPositionY();
+			_elfs[i]->_loadedNode->setPositionY(previousX + 1);
+		}
 
 		//TRANSITION TEST 
 		if (GameManager::GetInstance()->GetScore() >= 500)
