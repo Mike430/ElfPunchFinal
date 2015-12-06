@@ -1,17 +1,41 @@
 #include "Elf.h"
 
 
-Elf::Elf()
+Elf* Elf::create()
 {
+	Elf* newElf = new Elf();
+	if (newElf->init())
+	{
+		newElf->autorelease();
+		return newElf;
+	}
+	else
+	{
+		CC_SAFE_DELETE(newElf);
+		return nullptr;
+	}
+	return newElf;
+}
+
+bool Elf::init()
+{
+	if (!Node::init())
+	{
+		return false;
+	}
+
 	_isAlive = false;
 	_isUp = false;
 	_timeLeftUp = 0.0f;
+	_elfType = 0; // 0 = common, 1 = rare ()
+	_startingYPos = 0.0f;
+	
+	return true;
 }
 
-/*Elf* Elf::ElfInit()
+Elf::Elf()
 {
-	// Set up the sprites and get the positions
-}*/
+}
 
 Elf::~Elf()
 {

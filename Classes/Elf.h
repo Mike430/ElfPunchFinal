@@ -7,11 +7,11 @@
 // I could use the cocos2d namespace here
 // but I deliberatly will not so as to avoid ambiguity **mark**
 
-class Elf
+class Elf : public cocos2d::Node
 {
 private:
 	float _timeLeftUp;
-	int _elfType; // rare or common?
+	short int _elfType; // rare or common?
 	//int _elfSprite; // which common or rare sprite do we use?
 
 	cocos2d::Vec2 _position;// primary example for ambiguity **mark**
@@ -25,7 +25,8 @@ public:
 	// Methods
 	Elf();
 	~Elf();
-	Elf* ElfInit();
+	virtual bool init();
+	Elf* create();
 
 	void ElfUpdate(float deltaTime);
 
