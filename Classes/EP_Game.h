@@ -9,6 +9,8 @@
 #include "ui/CocosGUI.h"
 #include <string.h>
 #include <sstream>
+#include <cstdlib>
+#include <ctime>
 #include "GameManager.h"
 //#include "Elf.h"
 #include "LeaderBoard.h"
@@ -47,15 +49,20 @@ private:
 	cocos2d::Size _winSize;
 	cocos2d::Node* _rootNode;
 public:
-	//Implements the "createScene();"
+	//Manditory cocos methods for initialisation
 	CREATE_FUNC(EP_Game);
-	//Sets up the Leaderboard scene
 	static cocos2d::Scene* createScene();
-	//Basically a cocos constructor
 	virtual bool init();
+
 	//Custom Methods
 	void update(float);
 	void EndGame();
+
+	//Callbacks
+	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchEnded(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouchMoved(cocos2d::Touch*, cocos2d::Event*);
+	virtual void onTouhCancelled(cocos2d::Touch*, cocos2d::Event*);
 };
 
 #endif //__EP_GAME_H__

@@ -70,6 +70,18 @@ bool EP_Game::init()
 	_frameCount = 0;
 	_elfUpdateIndex = 0;
 
+	auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
+	// Assign the event methods to the event listener (known as callbacks)
+	touchListener->onTouchBegan = CC_CALLBACK_2(EP_Game::onTouchBegan, this);
+	touchListener->onTouchEnded = CC_CALLBACK_2(EP_Game::onTouchEnded, this);
+	touchListener->onTouchMoved = CC_CALLBACK_2(EP_Game::onTouchMoved, this);
+	touchListener->onTouchCancelled = CC_CALLBACK_2(EP_Game::onTouchCancelled, this);
+
+	/* For more information on the eventdispatcher mechanism (and how events in Cocos work in general)
+	go to http://www.cocos2d-x.org/wiki/EventDispatcher_Mechanism */
+	// Add the event listener to the event dispatcher which is not a member of this class but of it's own
+	_eventDispatcher->addEventListenerWithSceneGraphPriority(touchListener, this);
+
 	//Calls the game loop
 	this->scheduleUpdate();
 	//INIT ENDS IN RETURN TRUE
@@ -128,4 +140,50 @@ void EP_Game::EndGame()
 	//Transitions from the game scene to the leaderboard scene
 	cocos2d::Scene* nextScene = LeaderBoard::createScene();
 	cocos2d::CCDirector::getInstance()->replaceScene(nextScene);
+}
+
+bool EP_Game::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+	int itterator = 0;
+	bool hit = false;
+
+	cocos2d::Rect touchRect = cocos2d::Rect(
+		touch->getLocation().x,
+		touch->getLocation().x,
+		5,
+		5);
+
+	while (itterator < ELF_NUMBER && hit == false)
+	{
+		if (_elfs[itterator]->_isUp)
+		{
+			cocos2d::Rect elfRect = cocos2d::Rect(
+				_elfs[itterator]->_loadedNode->getPositionX(),
+				_elfs[itterator]->_loadedNode->getPositionX(),
+				100,
+				100);
+
+			if (elfRect.intersectsRect(touchRect))
+			{
+				_elfs[itterator]->_isUp = false;
+			}
+
+			//if (sprite->intersectsRect(touch))
+		}
+
+		itterator += 1;
+	}
+	return hit;
+}
+
+void EP_Game::onTouchEnded(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+}
+
+void EP_Game::onTouchMoved(cocos2d::Touch* touch, cocos2d::Event* event)
+{
+}
+
+void EP_Game::onTouhCancelled(cocos2d::Touch* touch, cocos2d::Event* event)
+{
 }
