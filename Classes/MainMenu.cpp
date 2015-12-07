@@ -23,6 +23,7 @@ bool MainMenu::init()
 	//Scene Setter
 	_rootNode = cocos2d::CSLoader::createNode("MainMenu.csb");
 	this->addChild(_rootNode);
+	_nextScene = nullptr;
 
 
 	//_gameManager = GameManager::GetInstance();
@@ -47,8 +48,12 @@ bool MainMenu::init()
 void MainMenu::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
 	GameManager::GetInstance()->ResetScore();
-	cocos2d::Scene* nextScene = EP_Game::createScene();
-	cocos2d::CCDirector::getInstance()->replaceScene(nextScene);
+	
+	if (_nextScene == nullptr)
+	{
+		_nextScene = EP_Game::createScene();
+		cocos2d::CCDirector::getInstance()->replaceScene(_nextScene);
+	}
 }
 //=========================================//
 void MainMenu::SettingsButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)

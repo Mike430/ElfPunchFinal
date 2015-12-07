@@ -22,6 +22,7 @@ private:
 	cocos2d::ui::Button* _credits;
 	cocos2d::ui::Button* _exit;
 public:
+	cocos2d::Scene* _nextScene;
 	//Implements the "createScene()"
 	CREATE_FUNC(MainMenu);
 	//Sets up the scene

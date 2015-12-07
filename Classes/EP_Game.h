@@ -22,6 +22,7 @@ struct Elfs
 	//cocos2d::Vec2 _position;// primary example for ambiguity **mark**
 	cocos2d::MoveTo* _moveUp;
 	cocos2d::MoveTo* _moveDown;
+	int _test; // I want to know if other variable types are changed after initialisation
 
 	float _startingYPos;
 	bool _isAlive;// should the elf have it's update method used?

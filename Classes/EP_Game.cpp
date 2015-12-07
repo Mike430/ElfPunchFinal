@@ -58,6 +58,7 @@ bool EP_Game::init()
 		// Create two new actions that moves the node to a new XY position in 0.5 seconds
 		_elfs[i]->_moveUp = cocos2d::MoveTo::create(0.5, cocos2d::Vec2(posX, posY_Up));
 		_elfs[i]->_moveDown = cocos2d::MoveTo::create(0.5, cocos2d::Vec2(posX, posY_Down));
+		_elfs[i]->_test = i;
 
 		_elfs[i]->_isAlive = false;
 		_elfs[i]->_isUp = false;
