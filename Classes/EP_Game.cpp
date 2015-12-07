@@ -55,10 +55,11 @@ bool EP_Game::init()
 		float posY_Up = _elfs[i]->_loadedNode->getPositionY() + 20.0f;
 		float posY_Down = _elfs[i]->_loadedNode->getPositionY();
 
-		// Create two new actions that moves the node to a new XY position in 0.5 seconds
-		_elfs[i]->_moveUp = cocos2d::MoveTo::create(0.5, cocos2d::Vec2(posX, posY_Up));
-		_elfs[i]->_moveDown = cocos2d::MoveTo::create(0.5, cocos2d::Vec2(posX, posY_Down));
-		_elfs[i]->_test = i;
+		cocos2d::Vec2 up = cocos2d::Vec2(posX, posY_Up);
+		cocos2d::Vec2 down = cocos2d::Vec2(posX, posY_Down);
+
+		_elfs[i]->_posUpY = up;
+		_elfs[i]->_posDownY = down;
 
 		_elfs[i]->_isAlive = false;
 		_elfs[i]->_isUp = false;
@@ -83,12 +84,20 @@ void EP_Game::update(float deltaTime)
 		_frameCount += 1;
 		GameManager::GetInstance()->AddToScore(1);
 
-		if (_frameCount == 50)
+		if (_frameCount == 10)
 		{
 			if (!_elfs[_elfUpdateIndex]->_isUp)
-				_elfs[_elfUpdateIndex]->_loadedNode->runAction(_elfs[_elfUpdateIndex]->_moveUp);
+			{
+				cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, _elfs[_elfUpdateIndex]->_posUpY);
+				_elfs[_elfUpdateIndex]->_loadedNode->runAction(moveTo);
+				_elfs[_elfUpdateIndex]->_isUp = true;
+			}
 			else
-				_elfs[_elfUpdateIndex]->_loadedNode->runAction(_elfs[_elfUpdateIndex]->_moveDown);
+			{
+				cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, _elfs[_elfUpdateIndex]->_posDownY);
+				_elfs[_elfUpdateIndex]->_loadedNode->runAction(moveTo);
+				_elfs[_elfUpdateIndex]->_isUp = false;
+			}
 
 			_elfUpdateIndex += 1;
 			if (_elfUpdateIndex >= 11)
@@ -96,15 +105,9 @@ void EP_Game::update(float deltaTime)
 
 			_frameCount = 0;
 		}
-		
-		/*for (int i = 0; i < ELF_NUMBER; i++)
-		{
-			float previousX = _elfs[i]->_loadedNode->getPositionY();
-			_elfs[i]->_loadedNode->setPositionY(previousX + 1);
-		}*/
 
 		//TRANSITION TEST 
-		if (GameManager::GetInstance()->GetScore() >= 500)
+		if (GameManager::GetInstance()->GetScore() >= 1000)
 		{
 			EndGame();
 		}
