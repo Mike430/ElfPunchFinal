@@ -35,10 +35,6 @@ bool EP_Game::init()
 	for (int i = 0; i < ELF_NUMBER; i++)
 	{
 		_elfs[i] = new Elfs();
-		_elfs[i]->_isAlive = false;
-		_elfs[i]->_isUp = false;
-		_elfs[i]->_position.x = 0.0f;
-		_elfs[i]->_position.y = 0.0f;
 	}
 	
 	_elfs[0]->_loadedNode = _rootNode->getChildByName("Elf_1");
@@ -55,13 +51,22 @@ bool EP_Game::init()
 
 	for (int i = 0; i < ELF_NUMBER; i++)
 	{
-		_elfs[i]->_position = _elfs[i]->_loadedNode->getPosition();
-		_elfs[i]->_startingYPos = _elfs[i]->_position.y;
+		float posX = _elfs[i]->_loadedNode->getPositionX();
+		float posY_Up = _elfs[i]->_loadedNode->getPositionY() + 20.0f;
+		float posY_Down = _elfs[i]->_loadedNode->getPositionY();
+
+		// Create two new actions that moves the node to a new XY position in 0.5 seconds
+		_elfs[i]->_moveUp = cocos2d::MoveTo::create(0.5, cocos2d::Vec2(posX, posY_Up));
+		_elfs[i]->_moveDown = cocos2d::MoveTo::create(0.5, cocos2d::Vec2(posX, posY_Down));
+
+		_elfs[i]->_isAlive = false;
+		_elfs[i]->_isUp = false;
 	}
 	
 	
 	_running = true;
 	_frameCount = 0;
+	_elfUpdateIndex = 0;
 
 	//Calls the game loop
 	this->scheduleUpdate();
@@ -75,13 +80,27 @@ void EP_Game::update(float deltaTime)
 	{
 		// Update the game
 		_frameCount += 1;
-		GameManager::GetInstance()->AddToScore(10);
+		GameManager::GetInstance()->AddToScore(1);
 
-		for (int i = 0; i < ELF_NUMBER; i++)
+		if (_frameCount == 50)
+		{
+			if (!_elfs[_elfUpdateIndex]->_isUp)
+				_elfs[_elfUpdateIndex]->_loadedNode->runAction(_elfs[_elfUpdateIndex]->_moveUp);
+			else
+				_elfs[_elfUpdateIndex]->_loadedNode->runAction(_elfs[_elfUpdateIndex]->_moveDown);
+
+			_elfUpdateIndex += 1;
+			if (_elfUpdateIndex >= 11)
+				_elfUpdateIndex = 0;
+
+			_frameCount = 0;
+		}
+		
+		/*for (int i = 0; i < ELF_NUMBER; i++)
 		{
 			float previousX = _elfs[i]->_loadedNode->getPositionY();
 			_elfs[i]->_loadedNode->setPositionY(previousX + 1);
-		}
+		}*/
 
 		//TRANSITION TEST 
 		if (GameManager::GetInstance()->GetScore() >= 500)
