@@ -1,6 +1,8 @@
 //INCLUDES
 #include "EP_Game.h"
+
 //=========================================//
+
 cocos2d::Scene* EP_Game::createScene()
 {
 	// 'scene' is an autorelease object
@@ -12,7 +14,9 @@ cocos2d::Scene* EP_Game::createScene()
 	//RETURN
 	return scene;
 }
+
 //=========================================//
+
 bool EP_Game::init()
 {
 	//A call to super? C++ doesn't have one so this is needed.
@@ -54,6 +58,7 @@ bool EP_Game::init()
 		float posX = _elfs[i]->_loadedNode->getPositionX();
 		float posY_Up = _elfs[i]->_loadedNode->getPositionY() + 20.0f;
 		float posY_Down = _elfs[i]->_loadedNode->getPositionY();
+		_elfs[i]->_startingYPos = _elfs[i]->_loadedNode->getPositionY();
 
 		cocos2d::Vec2 up = cocos2d::Vec2(posX, posY_Up);
 		cocos2d::Vec2 down = cocos2d::Vec2(posX, posY_Down);
@@ -67,6 +72,7 @@ bool EP_Game::init()
 	
 	
 	_running = true;
+	_gameOver = false;
 	_frameCount = 0;
 	_elfUpdateIndex = 0;
 
@@ -88,27 +94,24 @@ bool EP_Game::init()
 	return true;
 }
 //=========================================//
+
 void EP_Game::update(float deltaTime)
 {
 	if (_running)
 	{
 		// Update the game
 		_frameCount += 1;
-		GameManager::GetInstance()->AddToScore(1);
+		//GameManager::GetInstance()->AddToScore(1);
 
-		if (_frameCount == 10)
+		if (_frameCount == 10)// delay each elf by ten frames
 		{
 			if (!_elfs[_elfUpdateIndex]->_isUp)
 			{
-				cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, _elfs[_elfUpdateIndex]->_posUpY);
-				_elfs[_elfUpdateIndex]->_loadedNode->runAction(moveTo);
-				_elfs[_elfUpdateIndex]->_isUp = true;
+				ElfPopUp(_elfs[_elfUpdateIndex]);
 			}
 			else
 			{
-				cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, _elfs[_elfUpdateIndex]->_posDownY);
-				_elfs[_elfUpdateIndex]->_loadedNode->runAction(moveTo);
-				_elfs[_elfUpdateIndex]->_isUp = false;
+				ElfPopDown(_elfs[_elfUpdateIndex]);
 			}
 
 			_elfUpdateIndex += 1;
@@ -118,28 +121,56 @@ void EP_Game::update(float deltaTime)
 			_frameCount = 0;
 		}
 
-		//TRANSITION TEST 
-		if (GameManager::GetInstance()->GetScore() >= 1000)
-		{
-			EndGame();
-		}
+		UpdateScoreDisplay();
 
-		std::ostringstream convert;
-		convert << GameManager::GetInstance()->GetScore();
-		_countStr = "Score: " + convert.str();
-		_frameCounter->setString(_countStr);
+		//TRANSITION TEST 
+		if (GameManager::GetInstance()->GetScore() >= 100)
+		{
+			_gameOver = true;
+		}
 	}
+
 	if (_gameOver)
 	{
-		//EndGame();
+		EndGame();
 	}
 }
+
+void EP_Game::ElfPopUp(Elfs* elf)
+{
+	cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, elf->_posUpY);
+	elf->_loadedNode->runAction(moveTo);
+	elf->_isUp = true;
+}
+
+void EP_Game::ElfHit(Elfs* elf)
+{
+	GameManager::GetInstance()->AddToScore(10);
+	ElfPopDown(elf);
+}
+
+void EP_Game::ElfPopDown(Elfs* elf)
+{
+	cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, elf->_posDownY);
+	elf->_loadedNode->runAction(moveTo);
+	elf->_isUp = false;
+}
+
 //=========================================//
+
 void EP_Game::EndGame()
 {
 	//Transitions from the game scene to the leaderboard scene
 	cocos2d::Scene* nextScene = LeaderBoard::createScene();
 	cocos2d::CCDirector::getInstance()->replaceScene(nextScene);
+}
+
+void EP_Game::UpdateScoreDisplay()
+{
+	std::ostringstream convert;
+	convert << GameManager::GetInstance()->GetScore();
+	_countStr = "Score: " + convert.str();
+	_frameCounter->setString(_countStr);
 }
 
 bool EP_Game::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
@@ -149,9 +180,9 @@ bool EP_Game::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 
 	cocos2d::Rect touchRect = cocos2d::Rect(
 		touch->getLocation().x,
-		touch->getLocation().x,
-		5,
-		5);
+		touch->getLocation().y,
+		50,
+		50);
 
 	while (itterator < ELF_NUMBER && hit == false)
 	{
@@ -159,13 +190,14 @@ bool EP_Game::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 		{
 			cocos2d::Rect elfRect = cocos2d::Rect(
 				_elfs[itterator]->_loadedNode->getPositionX(),
-				_elfs[itterator]->_loadedNode->getPositionX(),
+				_elfs[itterator]->_loadedNode->getPositionY(),
 				100,
 				100);
 
 			if (elfRect.intersectsRect(touchRect))
 			{
 				_elfs[itterator]->_isUp = false;
+				ElfHit(_elfs[itterator]);
 			}
 
 			//if (sprite->intersectsRect(touch))

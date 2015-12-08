@@ -57,6 +57,10 @@ public:
 	//Custom Methods
 	void update(float);
 	void EndGame();
+	void UpdateScoreDisplay();
+	void ElfPopUp(Elfs* elf);
+	void ElfHit(Elfs* elf);
+	void ElfPopDown(Elfs* elf);
 
 	//Callbacks
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
