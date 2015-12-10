@@ -27,7 +27,5 @@ public:
 	virtual bool init();
 	//Custom Methods
 	void ReturnButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
-	void writeFile();
-	void readFile();
 };
 #endif //__LEADERBOARD_SCENE_H__
