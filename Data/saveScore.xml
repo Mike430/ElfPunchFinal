@@ -1,0 +1,26 @@
+< ?xml version="1.0" encoding="UTF-8"?>
+< !DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>SCORE1</key>
+	<string>000100</string>
+	<key>SCORE2</key>
+	<string>000090</string>
+	<key>SCORE3</key>
+	<string>000080</string>
+	<key>SCORE4</key>
+	<string>000070</string>
+	<key>SCORE5</key>
+	<string>000060</string>
+	<key>SCORE6</key>
+	<string>000050</string>
+	<key>SCORE7</key>
+	<string>000040</string>
+	<key>SCORE8</key>
+	<string>000030</string>
+	<key>SCORE9</key>
+	<string>000020</string>
+	<key>SCORE10</key>
+	<string>000010</string>
+</dict>
+</plist>

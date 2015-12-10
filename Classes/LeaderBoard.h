@@ -3,11 +3,14 @@
 #define __LEADERBOARD_SCENE_H__
 //=========================================//
 //INCLUDES
+#include <iostream>
+#include <fstream>
 #include "cocos2d.h"
 #include "cocostudio/CocoStudio.h"
 #include "ui/CocosGUI.h"
 #include "GameManager.h"
 #include "MainMenu.h"
+#include "CCFileUtils.h"
 //=========================================//
 class LeaderBoard : public cocos2d::Layer
 {
@@ -24,5 +27,7 @@ public:
 	virtual bool init();
 	//Custom Methods
 	void ReturnButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	void writeFile();
+	void readFile();
 };
 #endif //__LEADERBOARD_SCENE_H__

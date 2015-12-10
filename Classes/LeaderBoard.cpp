@@ -19,7 +19,11 @@ bool LeaderBoard::init()
 	if (!Layer::init())
 	{
 		return false;
-	}
+	}	
+
+	auto catcher = 
+
+
 	//Scene Setter
 	_rootNode = cocos2d::CSLoader::createNode("LeaderBoard.csb");
 	this->addChild(_rootNode);
@@ -39,3 +43,30 @@ void LeaderBoard::ReturnButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEve
 	cocos2d::CCDirector::getInstance()->replaceScene(nextScene);
 }
 //=========================================//
+
+
+/*
+void LeaderBoard::writeFile()
+{
+	//FILE WRITE TEST GROUND
+	ofstream tfile;
+	tfile.open("saveScore.txt");
+	tfile << "Writing this to a file.\n";
+	tfile.close();
+}
+void LeaderBoard::readFile()
+{
+	//FILE READ TEST GROUND
+	ofstream rFile;
+	rFile.open("saveScore.txt");
+
+
+
+}
+*/
+
+
+
+/////////
+// File load save help
+///////// http://www.cplusplus.com/doc/tutorial/files/
