@@ -14,7 +14,7 @@
             <CColor A="255" R="255" G="255" B="255" />
             <PrePosition X="0.5000" Y="0.5000" />
             <PreSize X="0.0000" Y="0.0000" />
-            <FileData Type="Normal" Path="Sprites/Room/MainMenu.png" Plist="" />
+            <FileData Type="Normal" Path="Sprites/Room/testMainMenuBackdrop.png" Plist="" />
             <BlendFunc Src="1" Dst="771" />
           </AbstractNodeData>
           <AbstractNodeData Name="BEGIN" ActionTag="687408389" CallBackType="Click" Tag="9" IconVisible="False" LeftMargin="144.9988" RightMargin="145.0012" TopMargin="380.0000" BottomMargin="480.0000" TouchEnable="True" FontSize="48" ButtonText="BEGIN" Scale9Enable="True" LeftEage="15" RightEage="15" TopEage="11" BottomEage="11" Scale9OriginX="15" Scale9OriginY="11" Scale9Width="16" Scale9Height="14" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="ButtonObjectData">
