@@ -11,6 +11,10 @@
 #include "GameManager.h"
 #include "MainMenu.h"
 #include "CCFileUtils.h"
+#include <string.h>
+#include <sstream>
+//=========================================//
+using namespace std;
 //=========================================//
 class LeaderBoard : public cocos2d::Layer
 {
@@ -18,6 +22,14 @@ private:
 	//cocos2d
 	cocos2d::Node* _rootNode;
 	cocos2d::ui::Button* _return;
+	cocos2d::ui::Text* _mail;
+	cocos2d::ui::Text* _total;
+	//Message variables
+	bool mSet;
+	string mPoor;
+	string mOkay;
+	string mGood;
+	string sTotal;
 public:
 	//Implements the "createScene();"
 	CREATE_FUNC(LeaderBoard);
@@ -27,5 +39,7 @@ public:
 	virtual bool init();
 	//Custom Methods
 	void ReturnButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEventType type);
+	int Threshold(/*_score*/);
+	void Messanger(/*_score*/);
 };
 #endif //__LEADERBOARD_SCENE_H__

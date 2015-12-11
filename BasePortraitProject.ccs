@@ -18,6 +18,8 @@
             <Image Name="LeaderBoard.png" />
             <Image Name="MainMenu.png" />
             <Image Name="SplashScreen.png" />
+            <Image Name="testLeaderboardBackdrop.png" />
+            <Image Name="testMainMenuBackdrop.png" />
           </Folder>
         </Folder>
         <Project Name="Elf.csd" Type="Node" />
