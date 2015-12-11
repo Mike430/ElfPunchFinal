@@ -30,6 +30,10 @@ private:
 	string mOkay;
 	string mGood;
 	string sTotal;
+	//Cocos2d string colours
+	cocos2d::Color3B red;
+	cocos2d::Color3B black;
+	cocos2d::Color3B blue;
 public:
 	//Implements the "createScene();"
 	CREATE_FUNC(LeaderBoard);

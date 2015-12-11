@@ -48,9 +48,13 @@ void LeaderBoard::Messanger(/*_score*/)
 {
 	mSet = false;
 	//Messages to be displayed
-	mPoor = "Well that was a poor attempt, try again!";
-	mOkay = "That was an alright attempt, go again!";
-	mGood = "Well Done that was great, have another go!";
+	mPoor = "Well that was a poor\n attempt, try again!";
+	mOkay = "That was an alright\n attempt, go again!";
+	mGood = "Well Done that was\n great, have another go!";
+	//Message Colours
+	red = cocos2d::Color3B(255, 0, 0);
+	black = cocos2d::Color3B(0, 0, 0);
+	blue = cocos2d::Color3B(0, 0, 255);
 	//Work out what message to send
 	int mNum = Threshold(/*_score*/);
 	//Here will be the score display
@@ -66,18 +70,22 @@ void LeaderBoard::Messanger(/*_score*/)
 	if (mNum == 1)
 	{
 		_mail->setString(mPoor);
+		_mail->setColor(red);
 	}
 	else if (mNum == 2)
 	{
 		_mail->setString(mOkay);
+		_mail->setColor(black);
 	}
 	else if (mNum == 3)
 	{
 		_mail->setString(mGood);
+		_mail->setColor(blue);
 	}
 	else
 	{
 		_mail->setString("DispError");
+		_mail->setColor(red);
 	}
 }
 //=========================================//

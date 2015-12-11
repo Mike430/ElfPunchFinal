@@ -32,35 +32,35 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="HighScore" ActionTag="-50028448" Tag="147" IconVisible="False" LeftMargin="232.1406" RightMargin="263.8594" TopMargin="365.5441" BottomMargin="544.4559" FontSize="44" LabelText="000010" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="144.0000" Y="50.0000" />
+          <AbstractNodeData Name="HighScore" ActionTag="-50028448" Tag="147" IconVisible="False" LeftMargin="195.5289" RightMargin="204.4711" TopMargin="382.5719" BottomMargin="496.4281" FontSize="72" LabelText="000010" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="240.0000" Y="81.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="304.1406" Y="569.4559" />
+            <Position X="315.5289" Y="536.9281" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="0" G="0" B="0" />
-            <PrePosition X="0.4752" Y="0.5932" />
+            <PrePosition X="0.4930" Y="0.5593" />
             <PreSize X="0.0000" Y="0.0000" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Message" ActionTag="-1013697165" Tag="157" IconVisible="False" LeftMargin="218.2701" RightMargin="243.7299" TopMargin="416.9283" BottomMargin="493.0717" FontSize="44" LabelText="Message" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="Message" ActionTag="-1013697165" Tag="157" IconVisible="False" LeftMargin="231.2830" RightMargin="230.7170" TopMargin="527.5287" BottomMargin="382.4713" FontSize="44" LabelText="Message" HorizontalAlignmentType="HT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="178.0000" Y="50.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="307.2701" Y="518.0717" />
+            <Position X="320.2830" Y="407.4713" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="0" G="0" B="0" />
-            <PrePosition X="0.4801" Y="0.5397" />
+            <PrePosition X="0.5004" Y="0.4244" />
             <PreSize X="0.0000" Y="0.0000" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Text_1" ActionTag="732002494" Tag="28" IconVisible="False" LeftMargin="52.0295" RightMargin="49.9705" TopMargin="620.0609" BottomMargin="216.9391" FontSize="36" LabelText="CREDITS&#xA;Mike Young - Programmer and Art&#xA;Chris Lambert - Programmer" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="Text_1" ActionTag="732002494" Tag="28" IconVisible="False" LeftMargin="50.4032" RightMargin="51.5968" TopMargin="680.2417" BottomMargin="156.7583" FontSize="36" LabelText="CREDITS&#xA;Mike Young - Programmer and Art&#xA;Chris Lambert - Programmer" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="538.0000" Y="123.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="321.0295" Y="278.4391" />
+            <Position X="319.4032" Y="218.2583" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5016" Y="0.2900" />
+            <PrePosition X="0.4991" Y="0.2274" />
             <PreSize X="0.0000" Y="0.0000" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
