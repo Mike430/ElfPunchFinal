@@ -44,7 +44,7 @@ void LeaderBoard::ReturnButtonPressed(Ref *sender, cocos2d::ui::Widget::TouchEve
 	cocos2d::CCDirector::getInstance()->replaceScene(nextScene);
 }
 //=========================================//
-void LeaderBoard::Messanger(/*_score*/)
+void LeaderBoard::Messanger()
 {
 	mSet = false;
 	//Messages to be displayed
@@ -56,13 +56,12 @@ void LeaderBoard::Messanger(/*_score*/)
 	black = cocos2d::Color3B(0, 0, 0);
 	blue = cocos2d::Color3B(0, 0, 255);
 	//Work out what message to send
-	int mNum = Threshold(/*_score*/);
+	int mNum = Threshold();
 	//Here will be the score display
 	
-//_score will need to be converted from int to a string
-//sTotal will be the int _score converted into a string.
+	//Int to String conversion
 	std::ostringstream change;
-	change << 123456;  //GameManager::GetInstance()->GetScore();
+	change << GameManager::GetInstance()->GetScore();
 	sTotal = change.str();
 	_total->setString(sTotal);
 
@@ -89,13 +88,28 @@ void LeaderBoard::Messanger(/*_score*/)
 	}
 }
 //=========================================//
-int LeaderBoard::Threshold(/*_score*/)
+int LeaderBoard::Threshold()
 {
 	int T = 0;
-	
-	//Here will be a caluelator to determine what string to send.
+	int tMoney = GameManager::GetInstance()->GetScore();
 
-	//CASCADING IF STATMENTS
+	//Here will be a caluelator to determine what string to send.
+	if (tMoney <= 50)
+	{
+		T = 1;
+	}
+	else if ((tMoney >= 51) && (tMoney <= 100))
+	{
+		T = 2;
+	}
+	else if (tMoney >= 101)
+	{
+		T = 3;
+	}
+	else
+	{
+		T = 0;
+	}
 
 	return T;
 }
