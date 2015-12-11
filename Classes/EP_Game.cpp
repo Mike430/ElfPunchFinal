@@ -136,6 +136,12 @@ void EP_Game::update(float deltaTime)
 	}
 }
 
+void EP_Game::UpdateElves()
+{
+	vector<Elfs*> elfList = MakeElfList();
+	MakeElfList();
+}
+
 void EP_Game::ElfPopUp(Elfs* elf)
 {
 	cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, elf->_posUpY);
@@ -175,7 +181,26 @@ int EP_Game::CountElvesState(bool upOrDown)
 	return count;
 }
 
-//=========================================//
+vector<Elfs*> EP_Game::MakeElfList()
+{
+	vector<Elfs*> elfList;
+
+	for (int i = 0; i < ELF_NUMBER; i++)
+	{
+		if (!_elfs[i]->_isUp)
+		{
+			elfList.push_back(_elfs[i]);
+		}
+	}
+
+	return elfList;
+}
+
+vector<Elfs*> EP_Game::ScrambleList(vector<Elfs*> elfList)
+{
+	
+	return elfList;
+}
 
 void EP_Game::EndGame()
 {
@@ -191,6 +216,8 @@ void EP_Game::UpdateScoreDisplay()
 	_countStr = "Score: " + convert.str();
 	_frameCounter->setString(_countStr);
 }
+
+//=========================================//
 
 bool EP_Game::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 {

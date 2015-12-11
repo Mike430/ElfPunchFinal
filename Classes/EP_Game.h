@@ -11,6 +11,7 @@
 #include <sstream>
 #include <cstdlib>
 #include <ctime>
+#include <vector>
 #include "GameManager.h"
 //#include "Elf.h"
 #include "LeaderBoard.h"
@@ -60,12 +61,15 @@ public:
 
 	//Custom Methods
 	void update(float);
+	void UpdateElves();
 	void EndGame();
 	void UpdateScoreDisplay();
 	void ElfPopUp(Elfs* elf);
 	void ElfHit(Elfs* elf);
 	void ElfPopDown(Elfs* elf);
 	int CountElvesState(bool upOrDown);
+	vector<Elfs*> MakeElfList();
+	vector<Elfs*> ScrambleList(vector<Elfs*> elfList);
 
 	//Callbacks
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
