@@ -49,6 +49,10 @@ private:
 	cocos2d::Size _winSize;
 	cocos2d::Node* _rootNode;
 public:
+	//Variables
+	int _elfsUp;
+	int _elfsDown;
+
 	//Manditory cocos methods for initialisation
 	CREATE_FUNC(EP_Game);
 	static cocos2d::Scene* createScene();
@@ -61,6 +65,7 @@ public:
 	void ElfPopUp(Elfs* elf);
 	void ElfHit(Elfs* elf);
 	void ElfPopDown(Elfs* elf);
+	int CountElvesState(bool upOrDown);
 
 	//Callbacks
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);

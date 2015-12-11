@@ -156,6 +156,25 @@ void EP_Game::ElfPopDown(Elfs* elf)
 	elf->_isUp = false;
 }
 
+int EP_Game::CountElvesState(bool upOrDown)
+{
+	int count = 0;
+	for (int i = 0; i < ELF_NUMBER; i++)
+	{
+		if (upOrDown)// look for elves that are up
+		{
+			if (_elfs[i]->_isUp)
+				count += 1;
+		}
+		else// look for elfs that are down
+		{
+			if (!_elfs[i]->_isUp)
+				count += 1;
+		}
+	}
+	return count;
+}
+
 //=========================================//
 
 void EP_Game::EndGame()
