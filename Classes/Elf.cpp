@@ -33,14 +33,6 @@ bool Elf::init()
 	return true;
 }
 
-Elf::Elf()
-{
-}
-
-Elf::~Elf()
-{
-}
-
 
 void Elf::ElfUpdate(float deltaTime)
 {

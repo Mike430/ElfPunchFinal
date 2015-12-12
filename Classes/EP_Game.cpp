@@ -66,11 +66,10 @@ bool EP_Game::init()
 		_elfs[i]->_posUpY = up;
 		_elfs[i]->_posDownY = down;
 
-		_elfs[i]->_isAlive = false;
 		_elfs[i]->_isUp = false;
 	}
 	
-	
+	_numOfElfs = 100;
 	_running = true;
 	_gameOver = false;
 	_frameCount = 0;
@@ -139,14 +138,29 @@ void EP_Game::update(float deltaTime)
 void EP_Game::UpdateElves()
 {
 	vector<Elfs*> elfList = MakeElfList();
-	MakeElfList();
+	ScrambleList(elfList);
+	for (int i = 0; i < elfList.size(); i++)
+	{
+		TestElf(elfList.at(i));
+	}
+}
+
+void EP_Game::TestElf(Elfs* elf)
+{
+
 }
 
 void EP_Game::ElfPopUp(Elfs* elf)
 {
-	cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, elf->_posUpY);
-	elf->_loadedNode->runAction(moveTo);
-	elf->_isUp = true;
+	_numOfElfs -= 1;
+	if (_numOfElfs <= 0)
+		_gameOver = true;
+	else
+	{
+		cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, elf->_posUpY);
+		elf->_loadedNode->runAction(moveTo);
+		elf->_isUp = true;
+	}
 }
 
 void EP_Game::ElfHit(Elfs* elf)
@@ -196,10 +210,11 @@ vector<Elfs*> EP_Game::MakeElfList()
 	return elfList;
 }
 
-vector<Elfs*> EP_Game::ScrambleList(vector<Elfs*> elfList)
+void EP_Game::ScrambleList(vector<Elfs*>& elfList)
 {
-	
-	return elfList;
+	//http://stackoverflow.com/questions/6926433/how-to-shuffle-a-stdvector
+	auto engine = std::default_random_engine{};
+	std::shuffle(std::begin(elfList), std::end(elfList), engine);
 }
 
 void EP_Game::EndGame()

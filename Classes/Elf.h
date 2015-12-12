@@ -23,8 +23,6 @@ public:
 	bool _isUp;// should the elf be up or down it's hole on the table?
 
 	// Methods
-	Elf();
-	~Elf();
 	virtual bool init();
 	Elf* create();
 

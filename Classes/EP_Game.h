@@ -12,6 +12,8 @@
 #include <cstdlib>
 #include <ctime>
 #include <vector>
+#include <algorithm>
+#include <random>
 #include "GameManager.h"
 //#include "Elf.h"
 #include "LeaderBoard.h"
@@ -24,12 +26,9 @@ struct Elfs
 	cocos2d::Node* _loadedNode;
 	cocos2d::Vec2 _posDownY;
 	cocos2d::Vec2 _posUpY;
-	//float _posDownY;
-	//float _posUpY;
 
 	float _startingYPos;
-	bool _isAlive;// should the elf have it's update method used?
-	bool _isUp;// should the elf be up or down it's hole on the table?
+	bool _isUp;
 };
 
 class EP_Game : public cocos2d::Layer
@@ -51,6 +50,7 @@ private:
 	cocos2d::Node* _rootNode;
 public:
 	//Variables
+	int difficulty; //in range 1(easy) to 5(BRÜTAL)
 	int _elfsUp;
 	int _elfsDown;
 
@@ -64,12 +64,15 @@ public:
 	void UpdateElves();
 	void EndGame();
 	void UpdateScoreDisplay();
+	
 	void ElfPopUp(Elfs* elf);
 	void ElfHit(Elfs* elf);
 	void ElfPopDown(Elfs* elf);
+	
 	int CountElvesState(bool upOrDown);
 	vector<Elfs*> MakeElfList();
-	vector<Elfs*> ScrambleList(vector<Elfs*> elfList);
+	void ScrambleList(vector<Elfs*>& elfList);
+	void TestElf(Elfs* elf);
 
 	//Callbacks
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
