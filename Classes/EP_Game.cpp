@@ -65,10 +65,12 @@ bool EP_Game::init()
 
 		_elfs[i]->_posUpY = up;
 		_elfs[i]->_posDownY = down;
+		_elfs[i]->_timeLeft = SetATime();
 
 		_elfs[i]->_isUp = false;
 	}
 	
+	_allElvesDown = true;
 	_numOfElfs = 100;
 	_running = true;
 	_gameOver = false;
@@ -102,23 +104,18 @@ void EP_Game::update(float deltaTime)
 		_frameCount += 1;
 		//GameManager::GetInstance()->AddToScore(1);
 
-		if (_frameCount == 10)// delay each elf by ten frames
+		int count = 0;
+		for (int i = 0; i < ELF_NUMBER; i++)
 		{
-			if (!_elfs[_elfUpdateIndex]->_isUp)
-			{
-				ElfPopUp(_elfs[_elfUpdateIndex]);
-			}
-			else
-			{
-				ElfPopDown(_elfs[_elfUpdateIndex]);
-			}
-
-			_elfUpdateIndex += 1;
-			if (_elfUpdateIndex >= 11)
-				_elfUpdateIndex = 0;
-
-			_frameCount = 0;
+			if (!_elfs[i]->_isUp) count += 1;
 		}
+
+		if (count == ELF_NUMBER)
+			_allElvesDown = true;
+		else
+			_allElvesDown = false;
+
+		UpdateElves(deltaTime);
 
 		UpdateScoreDisplay();
 
@@ -135,19 +132,40 @@ void EP_Game::update(float deltaTime)
 	}
 }
 
-void EP_Game::UpdateElves()
+void EP_Game::UpdateElves(float deltaTime)
 {
-	vector<Elfs*> elfList = MakeElfList();
-	ScrambleList(elfList);
-	for (int i = 0; i < elfList.size(); i++)
+	vector<Elfs*> elfListDown = MakeElfList(false);
+	ScrambleList(elfListDown);
+
+	vector<Elfs*> elfListUp;
+	if (!_allElvesDown)
 	{
-		TestElf(elfList.at(i));
+		elfListUp = MakeElfList(true);
+		ScrambleList(elfListUp);
+	}
+
+	for (int i = 0; i < ELF_NUMBER; i++)
+	{
+		UpdateElf(elfListDown.at(i), deltaTime, false);
+
+		if (!_allElvesDown)
+			UpdateElf(elfListUp.at(i), deltaTime, true);
 	}
 }
 
-void EP_Game::TestElf(Elfs* elf)
+void EP_Game::UpdateElf(Elfs* elf, float deltaTime, bool state)
 {
+	elf->_timeLeft -= 1 * deltaTime;
+	if (elf->_timeLeft <= 0.0f)
+	{
+		if (elf->_isUp)
+			ElfPopDown(elf);
+		else
+			ElfPopUp(elf);
 
+		elf->_isUp = !elf->_isUp;
+		elf->_timeLeft = SetATime();
+	}
 }
 
 void EP_Game::ElfPopUp(Elfs* elf)
@@ -195,13 +213,22 @@ int EP_Game::CountElvesState(bool upOrDown)
 	return count;
 }
 
-vector<Elfs*> EP_Game::MakeElfList()
+int EP_Game::SetATime()
+{
+	float time;
+	float randElement = (rand() % 10 + 7) / 10;
+	time = ((randElement * 5) / _difficulty) * 60;
+	int finalTime = (int)time;
+	return finalTime;
+}
+
+vector<Elfs*> EP_Game::MakeElfList(bool state)
 {
 	vector<Elfs*> elfList;
 
 	for (int i = 0; i < ELF_NUMBER; i++)
 	{
-		if (!_elfs[i]->_isUp)
+		if (_elfs[i]->_isUp == state)
 		{
 			elfList.push_back(_elfs[i]);
 		}

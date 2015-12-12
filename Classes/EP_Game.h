@@ -29,6 +29,7 @@ struct Elfs
 
 	float _startingYPos;
 	bool _isUp;
+	int _timeLeft;
 };
 
 class EP_Game : public cocos2d::Layer
@@ -50,7 +51,8 @@ private:
 	cocos2d::Node* _rootNode;
 public:
 	//Variables
-	int difficulty; //in range 1(easy) to 5(BRÜTAL)
+	int _difficulty; //in range 1(easy) to 5(BRÜTAL)
+	bool _allElvesDown;
 	int _elfsUp;
 	int _elfsDown;
 
@@ -61,7 +63,8 @@ public:
 
 	//Custom Methods
 	void update(float);
-	void UpdateElves();
+	void UpdateElves(float deltaTime);
+	int SetATime();
 	void EndGame();
 	void UpdateScoreDisplay();
 	
@@ -70,9 +73,9 @@ public:
 	void ElfPopDown(Elfs* elf);
 	
 	int CountElvesState(bool upOrDown);
-	vector<Elfs*> MakeElfList();
+	vector<Elfs*> MakeElfList(bool state);
 	void ScrambleList(vector<Elfs*>& elfList);
-	void TestElf(Elfs* elf);
+	void UpdateElf(Elfs* elf, float deltaTime, bool state);
 
 	//Callbacks
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
