@@ -35,7 +35,18 @@ bool EP_Game::init()
 	//Get the view pane size
 	_winSize = cocos2d::Director::getInstance()->getVisibleSize();
 	
-	
+	// Set up this class before you set up the elves
+	_numOfElfs = 100;
+	_running = true;
+	_gameOver = false;
+	_frameCount = 0;
+	_elfUpdateIndex = 0;
+
+	_difficulty = 5;// This in particular caused trouble when the elves got their initial time
+	_allElvesDown = true;
+	_elfsUp = 0;
+	_elfsDown = 11;
+
 	for (int i = 0; i < ELF_NUMBER; i++)
 	{
 		_elfs[i] = new Elfs();
@@ -66,16 +77,10 @@ bool EP_Game::init()
 		_elfs[i]->_posUpY = up;
 		_elfs[i]->_posDownY = down;
 		_elfs[i]->_timeLeft = SetATime();
+		_elfs[i]->_name = i;
 
 		_elfs[i]->_isUp = false;
 	}
-	
-	_allElvesDown = true;
-	_numOfElfs = 100;
-	_running = true;
-	_gameOver = false;
-	_frameCount = 0;
-	_elfUpdateIndex = 0;
 
 	auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
 	// Assign the event methods to the event listener (known as callbacks)
@@ -115,12 +120,12 @@ void EP_Game::update(float deltaTime)
 		else
 			_allElvesDown = false;
 
-		UpdateElves(deltaTime);
+		UpdateElves();
 
 		UpdateScoreDisplay();
 
 		//TRANSITION TEST 
-		if (GameManager::GetInstance()->GetScore() >= 100)
+		if (_numOfElfs <= 0)
 		{
 			_gameOver = true;
 		}
@@ -132,7 +137,7 @@ void EP_Game::update(float deltaTime)
 	}
 }
 
-void EP_Game::UpdateElves(float deltaTime)
+void EP_Game::UpdateElves()
 {
 	vector<Elfs*> elfListDown = MakeElfList(false);
 	ScrambleList(elfListDown);
@@ -146,16 +151,16 @@ void EP_Game::UpdateElves(float deltaTime)
 
 	for (int i = 0; i < ELF_NUMBER; i++)
 	{
-		UpdateElf(elfListDown.at(i), deltaTime, false);
+		UpdateElf(elfListDown.at(i), false);
 
 		if (!_allElvesDown)
-			UpdateElf(elfListUp.at(i), deltaTime, true);
+			UpdateElf(elfListUp.at(i), true);
 	}
 }
 
-void EP_Game::UpdateElf(Elfs* elf, float deltaTime, bool state)
+void EP_Game::UpdateElf(Elfs* elf, bool state)
 {
-	elf->_timeLeft -= 1 * deltaTime;
+	elf->_timeLeft -= 1;
 	if (elf->_timeLeft <= 0.0f)
 	{
 		if (elf->_isUp)
@@ -215,9 +220,12 @@ int EP_Game::CountElvesState(bool upOrDown)
 
 int EP_Game::SetATime()
 {
-	float time;
-	float randElement = (rand() % 10 + 7) / 10;
-	time = ((randElement * 5) / _difficulty) * 60;
+	double time;
+	double randElement = rand() % 10 + 7;
+	randElement = randElement / 10;
+	time = randElement * 5;
+	time = time / _difficulty;
+	time = time * 60;
 	int finalTime = (int)time;
 	return finalTime;
 }
@@ -241,7 +249,8 @@ void EP_Game::ScrambleList(vector<Elfs*>& elfList)
 {
 	//http://stackoverflow.com/questions/6926433/how-to-shuffle-a-stdvector
 	auto engine = std::default_random_engine{};
-	std::shuffle(std::begin(elfList), std::end(elfList), engine);
+	std::shuffle(std::begin(elfList), std::end(elfList), engine);// always randomises into the same patern
+	int q = 11;//for a break point
 }
 
 void EP_Game::EndGame()

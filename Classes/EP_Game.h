@@ -27,6 +27,7 @@ struct Elfs
 	cocos2d::Vec2 _posDownY;
 	cocos2d::Vec2 _posUpY;
 
+	int _name;
 	float _startingYPos;
 	bool _isUp;
 	int _timeLeft;
@@ -36,14 +37,12 @@ class EP_Game : public cocos2d::Layer
 {
 private:
 	int _numOfElfs; // number of times the elfs will poke up
-	float _speed;
 	bool _running;
 	bool _gameOver;
 	int _frameCount;
 	std::string _countStr;
 	int _elfUpdateIndex;
 
-	GameManager* _gameManager;
 	Elfs* _elfs[ELF_NUMBER];
 	cocos2d::ui::Text* _frameCounter;
 	cocos2d::Sprite* _backdrop;
@@ -63,7 +62,7 @@ public:
 
 	//Custom Methods
 	void update(float);
-	void UpdateElves(float deltaTime);
+	void UpdateElves();
 	int SetATime();
 	void EndGame();
 	void UpdateScoreDisplay();
@@ -75,7 +74,7 @@ public:
 	int CountElvesState(bool upOrDown);
 	vector<Elfs*> MakeElfList(bool state);
 	void ScrambleList(vector<Elfs*>& elfList);
-	void UpdateElf(Elfs* elf, float deltaTime, bool state);
+	void UpdateElf(Elfs* elf, bool state);
 
 	//Callbacks
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);
