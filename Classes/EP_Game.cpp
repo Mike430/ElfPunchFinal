@@ -147,14 +147,15 @@ void EP_Game::UpdateElves()
 	{
 		elfListUp = MakeElfList(true);
 		ScrambleList(elfListUp);
+		for (int i = 0; i < elfListUp.size(); i++)
+		{
+			UpdateElf(elfListUp.at(i), true);
+		}
 	}
 
-	for (int i = 0; i < ELF_NUMBER; i++)
+	for (int i = 0; i < elfListDown.size(); i++)
 	{
 		UpdateElf(elfListDown.at(i), false);
-
-		if (!_allElvesDown)
-			UpdateElf(elfListUp.at(i), true);
 	}
 }
 
@@ -168,7 +169,7 @@ void EP_Game::UpdateElf(Elfs* elf, bool state)
 		else
 			ElfPopUp(elf);
 
-		elf->_isUp = !elf->_isUp;
+		//elf->_isUp = !elf->_isUp;//This flips the state but the methods abover were already doing that. woops
 		elf->_timeLeft = SetATime();
 	}
 }
@@ -221,7 +222,7 @@ int EP_Game::CountElvesState(bool upOrDown)
 int EP_Game::SetATime()
 {
 	double time;
-	double randElement = rand() % 10 + 7;
+	double randElement = rand() % 10 + 5;
 	randElement = randElement / 10;
 	time = randElement * 5;
 	time = time / _difficulty;
