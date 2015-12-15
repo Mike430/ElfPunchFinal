@@ -76,7 +76,7 @@ void Elf::UpdateElf(Elf* elf, bool state)
 	if (elf->_timeLeft <= 0.0f)
 	{
 		if (elf->_isUp)
-			ElfPopDown(elf);
+			ElfPopDown(elf, false);
 		else
 			ElfPopUp(elf);
 
@@ -96,8 +96,8 @@ void Elf::ElfPopUp(Elf* elf)
 	else
 	{
 		cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, elf->_posUpY);
-		//_missed->setVisible(false);
-		//_common->setVisible(true);
+		_missed->setVisible(false);
+		_common->setVisible(true);
 		elf->_rootNode->runAction(moveTo);
 		elf->_isUp = true;
 	}
@@ -106,15 +106,28 @@ void Elf::ElfPopUp(Elf* elf)
 void Elf::ElfHit(Elf* elf)
 {
 	GameManager::GetInstance()->AddToScore(10);
-	ElfPopDown(elf);
+	ElfPopDown(elf, true);
 }
 
-void Elf::ElfPopDown(Elf* elf)
+void Elf::ElfPopDown(Elf* elf, bool hitOrNot)
 {
 	cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, elf->_posDownY);
 	elf->_rootNode->runAction(moveTo);
-	//_missed->setVisible(true);
-	//_common->setVisible(false);
+
+	if (hitOrNot)
+	{
+		elf->_missed->setVisible(false);
+		elf->_hit->setVisible(true);
+		elf->_common->setVisible(false);
+		elf->_rare->setVisible(false);
+	}
+	else
+	{
+		elf->_missed->setVisible(true);
+		elf->_hit->setVisible(false);
+		elf->_common->setVisible(false);
+		elf->_rare->setVisible(false);
+	}
 	elf->_isUp = false;
 }
 

@@ -44,7 +44,7 @@ public:
 	void UpdateElf(Elf* elf, bool state);
 	void ElfPopUp(Elf* elf);
 	void ElfHit(Elf* elf);
-	void ElfPopDown(Elf* elf);
+	void ElfPopDown(Elf* elf, bool hitOrNot);
 	int SetATime();
 };
 
