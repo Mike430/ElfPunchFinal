@@ -52,18 +52,18 @@ bool EP_Game::init()
 	}
 
 	_elves[0]->Setup(100.0f, 714.0f, 1);
-	_elves[2]->Setup(100.0f, 714.0f, 3);
-	_elves[5]->Setup(100.0f, 714.0f, 6);
-	_elves[8]->Setup(100.0f, 714.0f, 9);
+	_elves[2]->Setup(100.0f, 541.0f, 3);
+	_elves[5]->Setup(100.0f, 370.0f, 6);
+	_elves[8]->Setup(100.0f, 197.0f, 9);
 
-	_elves[1]->Setup(100.0f, 714.0f, 2);
-	_elves[4]->Setup(100.0f, 714.0f, 5);
-	_elves[7]->Setup(100.0f, 714.0f, 8);
-	_elves[10]->Setup(100.0f, 714.0f, 11);
+	_elves[1]->Setup(540.0f, 714.0f, 2);
+	_elves[4]->Setup(540.0f, 541.0f, 5);
+	_elves[7]->Setup(540.0f, 370.0f, 8);
+	_elves[10]->Setup(540.0f, 197.0f, 11);
 
-	_elves[3]->Setup(100.0f, 714.0f, 4);
-	_elves[6]->Setup(100.0f, 714.0f, 7);
-	_elves[9]->Setup(100.0f, 714.0f, 10);
+	_elves[3]->Setup(320.0f, 616.0f, 4);
+	_elves[6]->Setup(320.0f, 444.0f, 7);
+	_elves[9]->Setup(320.0f, 272.0f, 10);
 
 	auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
 	// Assign the event methods to the event listener (known as callbacks)
