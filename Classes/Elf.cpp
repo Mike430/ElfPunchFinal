@@ -28,6 +28,7 @@ bool Elf::init()
 	}
 
 	this->_rootNode = cocos2d::CSLoader::createNode("Elf.csb");
+	this->addChild(_rootNode);
 	this->_missed = (cocos2d::Sprite*) _rootNode->getChildByName("Missed");
 	this->_hit = (cocos2d::Sprite*) _rootNode->getChildByName("PunchedElf");
 	this->_common = (cocos2d::Sprite*) _rootNode->getChildByName("RegularElfUntouched");
