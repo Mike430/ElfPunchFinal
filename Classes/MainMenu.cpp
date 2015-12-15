@@ -24,8 +24,8 @@ bool MainMenu::init()
 	_rootNode = cocos2d::CSLoader::createNode("MainMenu.csb");
 	this->addChild(_rootNode);
 	_nextScene = nullptr;
-	CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic("res/f_Green.wav");
-	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("res/f_Green.wav", true);
+	CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic("res/menu.wav");
+	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("res/menu.wav", true);
 
 	//_gameManager = GameManager::GetInstance();
 
@@ -48,6 +48,7 @@ bool MainMenu::init()
 //=========================================//
 void MainMenu::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
+	CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic("res/menu.wav");
 	GameManager::GetInstance()->ResetScore();
 	
 	if (_nextScene == nullptr)
@@ -63,6 +64,7 @@ void MainMenu::SettingsButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEven
 //=========================================//
 void MainMenu::CreditsButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
+	CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic("res/menu.wav");
 	/*DOES NOT LEAD TO CREDITS, temporary link to leaderboard for test purposes.
 	A new button is needed  so credits/leaderboard can be accessed seperately*/
 	cocos2d::Scene* nextScene = LeaderBoard::createScene();
