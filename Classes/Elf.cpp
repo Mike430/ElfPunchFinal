@@ -62,7 +62,7 @@ void Elf::Setup(float x, float y, int name)
 
 	this->_posUpY = up;
 	this->_posDownY = down;
-	this->_timeLeft = SetATime();
+	this->_timeLeft = SetATime(false);
 	this->_name = name;
 
 	this->_isUp = false;
@@ -76,12 +76,15 @@ void Elf::UpdateElf(Elf* elf, bool state)
 	if (elf->_timeLeft <= 0.0f)
 	{
 		if (elf->_isUp)
+		{
 			ElfPopDown(elf, false);
+			elf->_timeLeft = SetATime(false);
+		}
 		else
+		{
 			ElfPopUp(elf);
-
-		//elf->_isUp = !elf->_isUp;//This flips the state but the methods abover were already doing that. woops
-		elf->_timeLeft = SetATime();
+			elf->_timeLeft = SetATime(true);
+		}
 	}
 }
 
@@ -95,9 +98,23 @@ void Elf::ElfPopUp(Elf* elf)
 		GameManager::GetInstance()->SetGameOver(true);
 	else
 	{
+		elf->_rareOrCommon = SetElfScarcity();
+		if (elf->_rareOrCommon)
+		{
+			elf->_missed->setVisible(false);
+			elf->_hit->setVisible(false);
+			elf->_common->setVisible(false);
+			elf->_rare->setVisible(true);
+		}
+		else
+		{
+			elf->_missed->setVisible(false);
+			elf->_hit->setVisible(false);
+			elf->_common->setVisible(true);
+			elf->_rare->setVisible(false);
+		}
+
 		cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, elf->_posUpY);
-		_missed->setVisible(false);
-		_common->setVisible(true);
 		elf->_rootNode->runAction(moveTo);
 		elf->_isUp = true;
 	}
@@ -105,7 +122,11 @@ void Elf::ElfPopUp(Elf* elf)
 
 void Elf::ElfHit(Elf* elf)
 {
-	GameManager::GetInstance()->AddToScore(10);
+	if (elf->_rareOrCommon)
+		GameManager::GetInstance()->AddToScore(100);
+	else
+		GameManager::GetInstance()->AddToScore(10);
+
 	ElfPopDown(elf, true);
 }
 
@@ -131,11 +152,32 @@ void Elf::ElfPopDown(Elf* elf, bool hitOrNot)
 	elf->_isUp = false;
 }
 
-int Elf::SetATime()
+bool Elf::SetElfScarcity()
+{
+	int scarcity = rand() % 20 + 1;
+
+	if (scarcity == 20)
+		return true;
+	else
+		return false;
+}
+
+int Elf::SetATime(bool upTime)
 {
 	double time;
-	double randElement = rand() % 10 + 5;
-	randElement = randElement / 10;
+	double randElement;
+
+	if (upTime)
+	{
+		randElement = rand() % 10 + 5;
+		randElement = randElement / 10;// 1 to 0.5 seconds
+	}
+	else
+	{
+		randElement = rand() % 70 + 30;
+		randElement = randElement / 10;// 7 to 3 seconds
+	}
+	
 	time = randElement * 5;
 	time = time / GameManager::GetInstance()->GetDifficulty();
 	time = time * 60;

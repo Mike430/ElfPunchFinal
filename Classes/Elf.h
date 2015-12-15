@@ -20,6 +20,7 @@ class Elf : public cocos2d::Node
 private:
 	cocos2d::Vec2 _posDownY;
 	cocos2d::Vec2 _posUpY;
+	bool _rareOrCommon;
 
 	cocos2d::Sprite* _missed;
 	cocos2d::Sprite* _hit;
@@ -45,7 +46,8 @@ public:
 	void ElfPopUp(Elf* elf);
 	void ElfHit(Elf* elf);
 	void ElfPopDown(Elf* elf, bool hitOrNot);
-	int SetATime();
+	bool SetElfScarcity();
+	int SetATime(bool upTime);
 };
 
 #endif
