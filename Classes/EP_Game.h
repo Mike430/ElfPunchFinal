@@ -15,42 +15,28 @@
 #include <algorithm>
 #include <random>
 #include "GameManager.h"
-//#include "Elf.h"
+#include "Elf.h"
 #include "LeaderBoard.h"
 //=========================================//
 using namespace std;
 //=========================================//
 
-struct Elfs
-{
-	cocos2d::Node* _loadedNode;
-	cocos2d::Vec2 _posDownY;
-	cocos2d::Vec2 _posUpY;
-
-	int _name;
-	float _startingYPos;
-	bool _isUp;
-	int _timeLeft;
-};
-
 class EP_Game : public cocos2d::Layer
 {
 private:
-	int _numOfElfs; // number of times the elfs will poke up
+	bool _elvesInitialized;
 	bool _running;
-	bool _gameOver;
 	int _frameCount;
 	std::string _countStr;
 	int _elfUpdateIndex;
 
-	Elfs* _elfs[ELF_NUMBER];
 	cocos2d::ui::Text* _frameCounter;
 	cocos2d::Sprite* _backdrop;
 	cocos2d::Size _winSize;
 	cocos2d::Node* _rootNode;
 public:
 	//Variables
-	int _difficulty; //in range 1(easy) to 5(BRÜTAL)
+	Elf* _elves[ELF_NUMBER];
 	bool _allElvesDown;
 	int _elfsUp;
 	int _elfsDown;
@@ -63,18 +49,12 @@ public:
 	//Custom Methods
 	void update(float);
 	void UpdateElves();
-	int SetATime();
 	void EndGame();
 	void UpdateScoreDisplay();
 	
-	void ElfPopUp(Elfs* elf);
-	void ElfHit(Elfs* elf);
-	void ElfPopDown(Elfs* elf);
-	
 	int CountElvesState(bool upOrDown);
-	vector<Elfs*> MakeElfList(bool state);
-	void ScrambleList(vector<Elfs*>& elfList);
-	void UpdateElf(Elfs* elf, bool state);
+	vector<Elf*> MakeElfList(bool state);
+	void ScrambleList(vector<Elf*>& elfList);
 
 	//Callbacks
 	virtual bool onTouchBegan(cocos2d::Touch*, cocos2d::Event*);

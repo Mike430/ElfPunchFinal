@@ -7,7 +7,7 @@ GameManager::GameManager()
 	//Default Setting
 	_score = 0;
 	_numOfElfs = 50;
-	_speed = 30.0f;
+	_difficulty = 30.0f;
 }
 
 
@@ -56,14 +56,26 @@ int GameManager::GetNumOfElfs()
 }
 
 
-// Speed
+// Difficulty
 //======================================================================
-void GameManager::SetSpeed(float newSpeed)
+void GameManager::SetDifficulty(float newDifficulty)
 {
-	_speed = newSpeed;
+	_difficulty = newDifficulty;
 }
 
-float GameManager::GetSpeed()
+float GameManager::GetDifficulty()
 {
-	return _speed;
+	return _difficulty;
+}
+
+// GameState
+//======================================================================
+void GameManager::SetGameOver(bool state)
+{
+	_gameOver = state;
+}
+
+bool GameManager::GetGameOver()
+{
+	return _gameOver;
 }

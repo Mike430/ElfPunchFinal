@@ -36,51 +36,34 @@ bool EP_Game::init()
 	_winSize = cocos2d::Director::getInstance()->getVisibleSize();
 	
 	// Set up this class before you set up the elves
-	_numOfElfs = 100;
+	_elvesInitialized = false;
 	_running = true;
-	_gameOver = false;
 	_frameCount = 0;
 	_elfUpdateIndex = 0;
 
-	_difficulty = 5;// This in particular caused trouble when the elves got their initial time
 	_allElvesDown = true;
 	_elfsUp = 0;
 	_elfsDown = 11;
 
 	for (int i = 0; i < ELF_NUMBER; i++)
 	{
-		_elfs[i] = new Elfs();
+		_elves[i] = Elf::create();
+		_rootNode->addChild(_elves[i]);
 	}
-	
-	_elfs[0]->_loadedNode = _rootNode->getChildByName("Elf_1");
-	_elfs[1]->_loadedNode = _rootNode->getChildByName("Elf_2");
-	_elfs[2]->_loadedNode = _rootNode->getChildByName("Elf_3");
-	_elfs[3]->_loadedNode = _rootNode->getChildByName("Elf_4");
-	_elfs[4]->_loadedNode = _rootNode->getChildByName("Elf_5");
-	_elfs[5]->_loadedNode = _rootNode->getChildByName("Elf_6");
-	_elfs[6]->_loadedNode = _rootNode->getChildByName("Elf_7");
-	_elfs[7]->_loadedNode = _rootNode->getChildByName("Elf_8");
-	_elfs[8]->_loadedNode = _rootNode->getChildByName("Elf_9");
-	_elfs[9]->_loadedNode = _rootNode->getChildByName("Elf_10");
-	_elfs[10]->_loadedNode = _rootNode->getChildByName("Elf_11");
 
-	for (int i = 0; i < ELF_NUMBER; i++)
-	{
-		float posX = _elfs[i]->_loadedNode->getPositionX();
-		float posY_Up = _elfs[i]->_loadedNode->getPositionY() + 20.0f;
-		float posY_Down = _elfs[i]->_loadedNode->getPositionY();
-		_elfs[i]->_startingYPos = _elfs[i]->_loadedNode->getPositionY();
+	_elves[0]->Setup(100.0f, 714.0f, 1);
+	_elves[2]->Setup(100.0f, 714.0f, 3);
+	_elves[5]->Setup(100.0f, 714.0f, 6);
+	_elves[8]->Setup(100.0f, 714.0f, 9);
 
-		cocos2d::Vec2 up = cocos2d::Vec2(posX, posY_Up);
-		cocos2d::Vec2 down = cocos2d::Vec2(posX, posY_Down);
+	_elves[1]->Setup(100.0f, 714.0f, 2);
+	_elves[4]->Setup(100.0f, 714.0f, 5);
+	_elves[7]->Setup(100.0f, 714.0f, 8);
+	_elves[10]->Setup(100.0f, 714.0f, 11);
 
-		_elfs[i]->_posUpY = up;
-		_elfs[i]->_posDownY = down;
-		_elfs[i]->_timeLeft = SetATime();
-		_elfs[i]->_name = i;
-
-		_elfs[i]->_isUp = false;
-	}
+	_elves[3]->Setup(100.0f, 714.0f, 4);
+	_elves[6]->Setup(100.0f, 714.0f, 7);
+	_elves[9]->Setup(100.0f, 714.0f, 10);
 
 	auto touchListener = cocos2d::EventListenerTouchOneByOne::create();
 	// Assign the event methods to the event listener (known as callbacks)
@@ -112,7 +95,7 @@ void EP_Game::update(float deltaTime)
 		int count = 0;
 		for (int i = 0; i < ELF_NUMBER; i++)
 		{
-			if (!_elfs[i]->_isUp) count += 1;
+			if (!_elves[i]->_isUp) count += 1;
 		}
 
 		if (count == ELF_NUMBER)
@@ -125,13 +108,13 @@ void EP_Game::update(float deltaTime)
 		UpdateScoreDisplay();
 
 		//TRANSITION TEST 
-		if (_numOfElfs <= 0)
+		if (GameManager::GetInstance()->GetNumOfElfs() <= 0)
 		{
-			_gameOver = true;
+			GameManager::GetInstance()->SetGameOver(true);
 		}
 	}
 
-	if (_gameOver)
+	if (GameManager::GetInstance()->GetGameOver())
 	{
 		EndGame();
 	}
@@ -139,65 +122,24 @@ void EP_Game::update(float deltaTime)
 
 void EP_Game::UpdateElves()
 {
-	vector<Elfs*> elfListDown = MakeElfList(false);
+	vector<Elf*> elfListDown = MakeElfList(false);
 	ScrambleList(elfListDown);
 
-	vector<Elfs*> elfListUp;
+	vector<Elf*> elfListUp;
 	if (!_allElvesDown)
 	{
 		elfListUp = MakeElfList(true);
 		ScrambleList(elfListUp);
 		for (int i = 0; i < elfListUp.size(); i++)
 		{
-			UpdateElf(elfListUp.at(i), true);
+			elfListUp.at(i)->UpdateElf(elfListUp.at(i), true);
 		}
 	}
 
 	for (int i = 0; i < elfListDown.size(); i++)
 	{
-		UpdateElf(elfListDown.at(i), false);
+		elfListDown.at(i)->UpdateElf(elfListDown.at(i), false);
 	}
-}
-
-void EP_Game::UpdateElf(Elfs* elf, bool state)
-{
-	elf->_timeLeft -= 1;
-	if (elf->_timeLeft <= 0.0f)
-	{
-		if (elf->_isUp)
-			ElfPopDown(elf);
-		else
-			ElfPopUp(elf);
-
-		//elf->_isUp = !elf->_isUp;//This flips the state but the methods abover were already doing that. woops
-		elf->_timeLeft = SetATime();
-	}
-}
-
-void EP_Game::ElfPopUp(Elfs* elf)
-{
-	_numOfElfs -= 1;
-	if (_numOfElfs <= 0)
-		_gameOver = true;
-	else
-	{
-		cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, elf->_posUpY);
-		elf->_loadedNode->runAction(moveTo);
-		elf->_isUp = true;
-	}
-}
-
-void EP_Game::ElfHit(Elfs* elf)
-{
-	GameManager::GetInstance()->AddToScore(10);
-	ElfPopDown(elf);
-}
-
-void EP_Game::ElfPopDown(Elfs* elf)
-{
-	cocos2d::MoveTo* moveTo = cocos2d::MoveTo::create(0.1, elf->_posDownY);
-	elf->_loadedNode->runAction(moveTo);
-	elf->_isUp = false;
 }
 
 int EP_Game::CountElvesState(bool upOrDown)
@@ -207,46 +149,34 @@ int EP_Game::CountElvesState(bool upOrDown)
 	{
 		if (upOrDown)// look for elves that are up
 		{
-			if (_elfs[i]->_isUp)
+			if (_elves[i]->_isUp)
 				count += 1;
 		}
 		else// look for elfs that are down
 		{
-			if (!_elfs[i]->_isUp)
+			if (!_elves[i]->_isUp)
 				count += 1;
 		}
 	}
 	return count;
 }
 
-int EP_Game::SetATime()
+vector<Elf*> EP_Game::MakeElfList(bool state)
 {
-	double time;
-	double randElement = rand() % 10 + 5;
-	randElement = randElement / 10;
-	time = randElement * 5;
-	time = time / _difficulty;
-	time = time * 60;
-	int finalTime = (int)time;
-	return finalTime;
-}
-
-vector<Elfs*> EP_Game::MakeElfList(bool state)
-{
-	vector<Elfs*> elfList;
+	vector<Elf*> elfList;
 
 	for (int i = 0; i < ELF_NUMBER; i++)
 	{
-		if (_elfs[i]->_isUp == state)
+		if (_elves[i]->_isUp == state)
 		{
-			elfList.push_back(_elfs[i]);
+			elfList.push_back(_elves[i]);
 		}
 	}
 
 	return elfList;
 }
 
-void EP_Game::ScrambleList(vector<Elfs*>& elfList)
+void EP_Game::ScrambleList(vector<Elf*>& elfList)
 {
 	//http://stackoverflow.com/questions/6926433/how-to-shuffle-a-stdvector
 	auto engine = std::default_random_engine{};
@@ -284,18 +214,18 @@ bool EP_Game::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 
 	while (itterator < ELF_NUMBER && hit == false)
 	{
-		if (_elfs[itterator]->_isUp)
+		if (_elves[itterator]->_isUp)
 		{
 			cocos2d::Rect elfRect = cocos2d::Rect(
-				_elfs[itterator]->_loadedNode->getPositionX(),
-				_elfs[itterator]->_loadedNode->getPositionY(),
+				_elves[itterator]->_rootNode->getPositionX(),
+				_elves[itterator]->_rootNode->getPositionY(),
 				100,
 				100);
 
 			if (elfRect.intersectsRect(touchRect))
 			{
-				_elfs[itterator]->_isUp = false;
-				ElfHit(_elfs[itterator]);
+				_elves[itterator]->_isUp = false;
+				_elves[itterator]->ElfHit(_elves[itterator]);
 			}
 
 			//if (sprite->intersectsRect(touch))
