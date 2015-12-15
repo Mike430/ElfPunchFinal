@@ -50,6 +50,8 @@ Elf::~Elf()
 
 void Elf::Setup(float x, float y, int name)
 {
+	cocos2d::Vec2 pos = cocos2d::Vec2(x, y);
+	this->_rootNode->setPosition(pos);
 	float posX = this->_rootNode->getPositionX();
 	float posY_Up = this->_rootNode->getPositionY() + 20.0f;
 	float posY_Down = this->_rootNode->getPositionY();
