@@ -24,7 +24,8 @@ bool MainMenu::init()
 	_rootNode = cocos2d::CSLoader::createNode("MainMenu.csb");
 	this->addChild(_rootNode);
 	_nextScene = nullptr;
-
+	CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic("res/f_Green.wav");
+	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("res/f_Green.wav", true);
 
 	//_gameManager = GameManager::GetInstance();
 
