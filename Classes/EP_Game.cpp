@@ -27,6 +27,8 @@ bool EP_Game::init()
 	//Scene Setter
 	_rootNode = cocos2d::CSLoader::createNode("GameScene.csb");
 	this->addChild(_rootNode);
+	//Sound Setter
+	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("res/Game.wav", true);
 	// get components from level
 	_backdrop = (cocos2d::Sprite*)_rootNode->getChildByName("GameBoardScreen_1");
 	_frameCounter = (cocos2d::ui::Text*)_rootNode->getChildByName("Frame_Counter");
@@ -160,6 +162,7 @@ void EP_Game::ElfPopDown(Elfs* elf)
 
 void EP_Game::EndGame()
 {
+	CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic("res/Game.wav");
 	//Transitions from the game scene to the leaderboard scene
 	cocos2d::Scene* nextScene = LeaderBoard::createScene();
 	cocos2d::CCDirector::getInstance()->replaceScene(nextScene);

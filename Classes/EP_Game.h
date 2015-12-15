@@ -14,6 +14,7 @@
 #include "GameManager.h"
 //#include "Elf.h"
 #include "LeaderBoard.h"
+#include "SimpleAudioEngine.h"
 //=========================================//
 using namespace std;
 //=========================================//

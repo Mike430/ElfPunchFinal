@@ -6,13 +6,13 @@
       <ObjectData Name="Scene" Tag="4" ctype="GameNodeObjectData">
         <Size X="640.0000" Y="960.0000" />
         <Children>
-          <AbstractNodeData Name="Sprite_1" ActionTag="2134096581" Tag="5" IconVisible="False" LeftMargin="-0.0006" RightMargin="0.0006" TopMargin="1.8596" BottomMargin="-1.8596" ctype="SpriteObjectData">
+          <AbstractNodeData Name="Sprite_1" ActionTag="2134096581" Tag="5" IconVisible="False" LeftMargin="-1.0006" RightMargin="1.0006" TopMargin="-1.1404" BottomMargin="1.1404" ctype="SpriteObjectData">
             <Size X="640.0000" Y="960.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="319.9994" Y="478.1404" />
+            <Position X="318.9994" Y="481.1404" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.5000" Y="0.4981" />
+            <PrePosition X="0.4984" Y="0.5012" />
             <PreSize X="0.0000" Y="0.0000" />
             <FileData Type="Normal" Path="Sprites/Room/testLeaderboardBackdrop.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
@@ -54,13 +54,13 @@
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Text_1" ActionTag="732002494" Tag="28" IconVisible="False" LeftMargin="50.4032" RightMargin="51.5968" TopMargin="680.2417" BottomMargin="156.7583" FontSize="36" LabelText="CREDITS&#xA;Mike Young - Programmer and Art&#xA;Chris Lambert - Programmer" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
-            <Size X="538.0000" Y="123.0000" />
+          <AbstractNodeData Name="Text_1" ActionTag="732002494" Tag="28" IconVisible="False" LeftMargin="48.9574" RightMargin="53.0426" TopMargin="645.0260" BottomMargin="109.9740" FontSize="36" LabelText="CREDITS&#xA;Mike Young - Programmer and Art&#xA;&#xA;Chris Lambert - Programmer &#xA;and Audio" HorizontalAlignmentType="HT_Center" VerticalAlignmentType="VT_Center" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+            <Size X="538.0000" Y="205.0000" />
             <AnchorPoint ScaleX="0.5000" ScaleY="0.5000" />
-            <Position X="319.4032" Y="218.2583" />
+            <Position X="317.9574" Y="212.4740" />
             <Scale ScaleX="1.0000" ScaleY="1.0000" />
             <CColor A="255" R="255" G="255" B="255" />
-            <PrePosition X="0.4991" Y="0.2274" />
+            <PrePosition X="0.4968" Y="0.2213" />
             <PreSize X="0.0000" Y="0.0000" />
             <OutlineColor A="255" R="255" G="0" B="0" />
             <ShadowColor A="255" R="110" G="110" B="110" />
