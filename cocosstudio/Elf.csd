@@ -1,5 +1,5 @@
-<GameProjectFile>
-  <PropertyGroup Type="Node" Name="Elf" ID="6585dabd-61be-4871-85a8-e6fff708496b" Version="2.3.2.3" />
+<GameFile>
+  <PropertyGroup Name="Elf" Type="Node" ID="6585dabd-61be-4871-85a8-e6fff708496b" Version="2.3.3.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -54,4 +54,4 @@
       </ObjectData>
     </Content>
   </Content>
-</GameProjectFile>
+</GameFile>

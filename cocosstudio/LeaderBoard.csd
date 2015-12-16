@@ -1,5 +1,5 @@
-<GameProjectFile>
-  <PropertyGroup Type="Scene" Name="LeaderBoard" ID="2a9c74a9-3ec8-4fbd-9d5e-7e6b821d9bd3" Version="2.3.2.3" />
+<GameFile>
+  <PropertyGroup Name="LeaderBoard" Type="Scene" ID="2a9c74a9-3ec8-4fbd-9d5e-7e6b821d9bd3" Version="2.3.3.0" />
   <Content ctype="GameProjectContent">
     <Content>
       <Animation Duration="0" Speed="1.0000" />
@@ -69,4 +69,4 @@
       </ObjectData>
     </Content>
   </Content>
-</GameProjectFile>
+</GameFile>
