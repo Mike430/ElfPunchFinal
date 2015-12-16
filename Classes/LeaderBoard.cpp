@@ -94,15 +94,15 @@ int LeaderBoard::Threshold()
 	int tMoney = GameManager::GetInstance()->GetScore();
 
 	//Here will be a caluelator to determine what string to send.
-	if (tMoney <= 50)
+	if (tMoney <= 1000)
 	{
 		T = 1;
 	}
-	else if ((tMoney >= 51) && (tMoney <= 100))
+	else if ((tMoney >= 1001) && (tMoney <= 2000))
 	{
 		T = 2;
 	}
-	else if (tMoney >= 101)
+	else if (tMoney >= 2001)
 	{
 		T = 3;
 	}
