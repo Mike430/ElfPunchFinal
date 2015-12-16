@@ -127,6 +127,7 @@ void Elf::ElfHit(Elf* elf)
 	else
 		GameManager::GetInstance()->AddToScore(10);
 
+	elf->_timeLeft = SetATime(false);
 	ElfPopDown(elf, true);
 }
 
