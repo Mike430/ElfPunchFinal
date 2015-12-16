@@ -147,6 +147,9 @@ void EP_Game::ElfPopUp(Elfs* elf)
 
 void EP_Game::ElfHit(Elfs* elf)
 {
+	//Play Hit Sound
+//	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("res/Ow.wav", false);
+	//Score Additions
 	GameManager::GetInstance()->AddToScore(10);
 	ElfPopDown(elf);
 }
