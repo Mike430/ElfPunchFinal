@@ -76,4 +76,6 @@ void MainMenu::CreditsButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEvent
 //=========================================//
 void MainMenu::ExitButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
+	cocos2d::CCDirector::getInstance()->end();
+	cocos2d::CCDirector::sharedDirector()->end();
 }
