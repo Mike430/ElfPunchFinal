@@ -9,6 +9,8 @@ class GameManager
 private:
 	int _score;
 	int _numOfElfs;// number of times the elfs will poke up
+	int _multiplierItt;
+	int _multiplier;
 	float _difficulty;// a percentage that will represent the rate at which elfs will appear
 	bool _gameOver;
 	static GameManager* _instance;
@@ -23,6 +25,11 @@ public:
 	int GetScore();
 	void AddToScore(int increment);
 	void ResetScore();
+
+	int GetMultiplier();
+	void AddToMultiplier();
+	void TakeFromMultiplier();
+	void ResetMultiplier();
 
 	// Elves
 	//======================================================================
