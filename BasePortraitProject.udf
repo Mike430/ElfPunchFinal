@@ -33,8 +33,10 @@
         <OpenedDocuments>
           <FilePathData Path="Elf.csd" />
           <FilePathData Path="GameScene.csd" />
+		  <FilePathData Path="LeaderBoard.csd" />
         </OpenedDocuments>
         <ActiveDocument Path="GameScene.csd" />
+        <ActiveDocument Path="LeaderBoard.csd" />
       </Value>
     </Item>
   </Properties>

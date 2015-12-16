@@ -9,6 +9,7 @@
 #include "GameManager.h"
 #include "EP_Game.h"
 #include "LeaderBoard.h"
+#include "SimpleAudioEngine.h"
 //=========================================//
 class MainMenu : public cocos2d::Layer
 {

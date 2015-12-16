@@ -33,6 +33,10 @@ bool HelloWorld::init()
     auto rootNode = CSLoader::createNode("SplashScreen.csb");
     addChild(rootNode);
 
+	//Music Pre-Loaders
+	CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic("res/Menu.wav");
+	CocosDenshion::SimpleAudioEngine::getInstance()->preloadBackgroundMusic("res/Game.wav");
+
 	//gameManager = new GameManager();
 	//_gameManager->SetNumOfElfs(50);// parse in an integer that represents the number of times in one game an elf will pop up
 	//_gameManager->SetSpeed(40.0f);// parse in a percentage
