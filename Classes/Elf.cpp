@@ -123,7 +123,10 @@ void Elf::ElfPopUp(Elf* elf)
 void Elf::ElfHit(Elf* elf)
 {
 	if (elf->_rareOrCommon)
+	{
+		GameManager::GetInstance()->AddToMultiplier();
 		GameManager::GetInstance()->AddToScore(100);
+	}
 	else
 		GameManager::GetInstance()->AddToScore(10);
 

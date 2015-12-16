@@ -17,7 +17,7 @@
             <FileData Type="Normal" Path="Sprites/Room/GameBoardScreen.png" Plist="" />
             <BlendFunc Src="770" Dst="771" />
           </AbstractNodeData>
-          <AbstractNodeData Name="Frame_Counter" ActionTag="1129789034" Tag="45" IconVisible="False" LeftMargin="12.0000" RightMargin="379.0000" TopMargin="11.5000" BottomMargin="907.5000" FontSize="36" LabelText="Score: 0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
+          <AbstractNodeData Name="Score" ActionTag="1129789034" Tag="45" IconVisible="False" LeftMargin="12.0000" RightMargin="379.0000" TopMargin="11.5000" BottomMargin="907.5000" FontSize="36" LabelText="Score: 0" ShadowOffsetX="2.0000" ShadowOffsetY="-2.0000" ctype="TextObjectData">
             <Size X="134.0000" Y="41.0000" />
             <AnchorPoint ScaleY="0.5000" />
             <Position X="12.0000" Y="928.0000" />

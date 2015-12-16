@@ -27,11 +27,10 @@ class EP_Game : public cocos2d::Layer
 private:
 	bool _elvesInitialized;
 	bool _running;
-	int _frameCount;
 	std::string _countStr;
 	int _elfUpdateIndex;
 
-	cocos2d::ui::Text* _frameCounter;
+	cocos2d::ui::Text* _ScoreLabel;
 	cocos2d::Sprite* _backdrop;
 	cocos2d::Size _winSize;
 	cocos2d::Node* _rootNode;

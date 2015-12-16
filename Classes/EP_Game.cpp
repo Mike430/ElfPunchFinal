@@ -31,7 +31,7 @@ bool EP_Game::init()
 	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("res/Game.wav", true);
 	// get components from level
 	_backdrop = (cocos2d::Sprite*)_rootNode->getChildByName("GameBoardScreen_1");
-	_frameCounter = (cocos2d::ui::Text*)_rootNode->getChildByName("Frame_Counter");
+	_ScoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Score");
 	//Random Generator
 	srand(time(NULL));
 	//Get the view pane size
@@ -40,7 +40,6 @@ bool EP_Game::init()
 	// Set up this class before you set up the elves
 	_elvesInitialized = false;
 	_running = true;
-	_frameCount = 0;
 	_elfUpdateIndex = 0;
 
 	_allElvesDown = true;
@@ -91,7 +90,6 @@ void EP_Game::update(float deltaTime)
 	if (_running)
 	{
 		// Update the game
-		_frameCount += 1;
 		//GameManager::GetInstance()->AddToScore(1);
 
 		int count = 0;
@@ -199,7 +197,7 @@ void EP_Game::UpdateScoreDisplay()
 	std::ostringstream convert;
 	convert << GameManager::GetInstance()->GetScore();
 	_countStr = "Score: " + convert.str();
-	_frameCounter->setString(_countStr);
+	_ScoreLabel->setString(_countStr);
 }
 
 //=========================================//

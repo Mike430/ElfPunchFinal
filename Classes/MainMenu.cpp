@@ -53,6 +53,7 @@ void MainMenu::BeginButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventTy
 {
 	CocosDenshion::SimpleAudioEngine::getInstance()->stopBackgroundMusic("res/Menu.wav");
 	GameManager::GetInstance()->ResetScore();
+	GameManager::GetInstance()->ResetMultiplier();
 	
 	if (_nextScene == nullptr)
 	{
