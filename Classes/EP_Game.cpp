@@ -246,8 +246,8 @@ bool EP_Game::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 			cocos2d::Rect elfRect = cocos2d::Rect(
 				_elves[itterator]->_rootNode->getPositionX(),
 				_elves[itterator]->_rootNode->getPositionY(),
-				100,
-				100);
+				125,
+				125);
 
 			if (elfRect.intersectsRect(touchRect))
 			{

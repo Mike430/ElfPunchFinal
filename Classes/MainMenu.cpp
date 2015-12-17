@@ -39,7 +39,7 @@ bool MainMenu::init()
 	_begin->addTouchEventListener(CC_CALLBACK_2(MainMenu::BeginButtonPressed, this));
 	//_settings->addTouchEventListener(CC_CALLBACK_2(MainMenu::SettingsButtonPressed, this));
 	_credits->addTouchEventListener(CC_CALLBACK_2(MainMenu::CreditsButtonPressed, this));
-	//_exit->addTouchEventListener(CC_CALLBACK_2(MainMenu::ExitButtonPressed, this));
+	_exit->addTouchEventListener(CC_CALLBACK_2(MainMenu::ExitButtonPressed, this));
 	GameManager::GetInstance()->SetGameOver(false);
 	GameManager::GetInstance()->SetNumOfElfs(250);
 	GameManager::GetInstance()->SetDifficulty(5);//highest
@@ -77,6 +77,6 @@ void MainMenu::CreditsButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEvent
 //=========================================//
 void MainMenu::ExitButtonPressed(Ref* sender, cocos2d::ui::Widget::TouchEventType type)
 {
-	cocos2d::CCDirector::getInstance()->end();
-	cocos2d::CCDirector::sharedDirector()->end();
+	cocos2d::Director::getInstance()->end();
+	//cocos2d::Director::sharedDirector()->end();
 }
