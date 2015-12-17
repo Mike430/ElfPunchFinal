@@ -48,9 +48,12 @@ void LeaderBoard::Messanger()
 {
 	mSet = false;
 	//Messages to be displayed
-	mPoor = "Well that was a poor\n attempt, try again!";
+	mPoor = "Welp, everyone start\n somewhere, try again?";
 	mOkay = "That was an alright\n attempt, go again!";
-	mGood = "Well Done that was\n great, have another go!";
+	mGood = "Well Done that was...\n good... have another go!";
+	mGreat = "Well I'm impressed\n , can you top it?";
+	mMarvel = "Astonishing, Magestic,\n I have no words!";
+	mGodlike = "gg, brb, gotta make\n a game worthy such skill";
 	//Message Colours
 	red = cocos2d::Color3B(255, 0, 0);
 	black = cocos2d::Color3B(0, 0, 0);
@@ -94,17 +97,29 @@ int LeaderBoard::Threshold()
 	int tMoney = GameManager::GetInstance()->GetScore();
 
 	//Here will be a caluelator to determine what string to send.
-	if (tMoney <= 1000)
+	if (tMoney <= 500)
 	{
 		T = 1;
 	}
-	else if ((tMoney >= 1001) && (tMoney <= 2000))
+	else if ((tMoney >= 501) && (tMoney <= 1000))
 	{
 		T = 2;
 	}
-	else if (tMoney >= 2001)
+	else if ((tMoney >= 1001) && (tMoney <= 2000))
 	{
 		T = 3;
+	}
+	else if ((tMoney >= 2001) && (tMoney <= 5000))
+	{
+		T = 4;
+	}
+	else if ((tMoney >= 5001) && (tMoney <= 8000))
+	{
+		T = 5;
+	}
+	else if  (tMoney >= 8001)
+	{
+		T = 6;
 	}
 	else
 	{

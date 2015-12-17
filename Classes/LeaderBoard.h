@@ -29,6 +29,9 @@ private:
 	string mPoor;
 	string mOkay;
 	string mGood;
+	string mGreat;
+	string mMarvel;
+	string mGodlike;
 	string sTotal;
 	//Cocos2d string colours
 	cocos2d::Color3B red;
