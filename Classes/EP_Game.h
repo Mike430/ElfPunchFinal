@@ -27,10 +27,14 @@ class EP_Game : public cocos2d::Layer
 private:
 	bool _elvesInitialized;
 	bool _running;
-	std::string _countStr;
+	std::string _scoreStr;
+	std::string _multiplierStr;
+	std::string _elvesLeftStr;
 	int _elfUpdateIndex;
 
-	cocos2d::ui::Text* _ScoreLabel;
+	cocos2d::ui::Text* _scoreLabel;
+	cocos2d::ui::Text* _multiplierLabel;
+	cocos2d::ui::Text* _elfCounterLabel;
 	cocos2d::Sprite* _backdrop;
 	cocos2d::Size _winSize;
 	cocos2d::Node* _rootNode;
@@ -50,7 +54,10 @@ public:
 	void update(float);
 	void UpdateElves();
 	void EndGame();
+	
 	void UpdateScoreDisplay();
+	void UpdateMultiplierDisplay();
+	void UpdateElfCounterDisplay();
 	
 	int CountElvesState(bool upOrDown);
 	vector<Elf*> MakeElfList(bool state);

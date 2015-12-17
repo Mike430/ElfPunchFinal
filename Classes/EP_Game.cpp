@@ -31,7 +31,9 @@ bool EP_Game::init()
 	CocosDenshion::SimpleAudioEngine::getInstance()->playBackgroundMusic("res/Game.wav", true);
 	// get components from level
 	_backdrop = (cocos2d::Sprite*)_rootNode->getChildByName("GameBoardScreen_1");
-	_ScoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Score");
+	_scoreLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Score");
+	_multiplierLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("Multiplier");
+	_elfCounterLabel = (cocos2d::ui::Text*)_rootNode->getChildByName("ElvesLeft");
 	//Random Generator
 	srand(time(NULL));
 	//Get the view pane size
@@ -106,6 +108,8 @@ void EP_Game::update(float deltaTime)
 		UpdateElves();
 
 		UpdateScoreDisplay();
+		UpdateMultiplierDisplay();
+		UpdateElfCounterDisplay();
 
 		//TRANSITION TEST 
 		if (GameManager::GetInstance()->GetNumOfElfs() <= 0)
@@ -192,12 +196,30 @@ void EP_Game::EndGame()
 	cocos2d::CCDirector::getInstance()->replaceScene(nextScene);
 }
 
+//=========================================//
+
 void EP_Game::UpdateScoreDisplay()
 {
 	std::ostringstream convert;
 	convert << GameManager::GetInstance()->GetScore();
-	_countStr = "Score: " + convert.str();
-	_ScoreLabel->setString(_countStr);
+	_scoreStr = "Score: " + convert.str();
+	_scoreLabel->setString(_scoreStr);
+}
+
+void EP_Game::UpdateMultiplierDisplay()
+{
+	std::ostringstream convert;
+	convert << GameManager::GetInstance()->GetMultiplier();
+	_multiplierStr = "x" + convert.str();
+	_multiplierLabel->setString(_multiplierStr);
+}
+
+void EP_Game::UpdateElfCounterDisplay()
+{
+	std::ostringstream convert;
+	convert << GameManager::GetInstance()->GetNumOfElfs();
+	_elvesLeftStr = "" + convert.str();
+	_elfCounterLabel->setString(_elvesLeftStr);
 }
 
 //=========================================//
@@ -228,6 +250,8 @@ bool EP_Game::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 				_elves[itterator]->_isUp = false;
 				_elves[itterator]->ElfHit(_elves[itterator]);
 			}
+			else
+				GameManager::GetInstance()->TakeFromMultiplier();
 
 			//if (sprite->intersectsRect(touch))
 		}

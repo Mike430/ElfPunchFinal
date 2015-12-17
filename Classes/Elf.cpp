@@ -125,10 +125,10 @@ void Elf::ElfHit(Elf* elf)
 	if (elf->_rareOrCommon)
 	{
 		GameManager::GetInstance()->AddToMultiplier();
-		GameManager::GetInstance()->AddToScore(100);
+		GameManager::GetInstance()->AddToScore(50);
 	}
 	else
-		GameManager::GetInstance()->AddToScore(10);
+		GameManager::GetInstance()->AddToScore(1);
 
 	elf->_timeLeft = SetATime(false);
 	ElfPopDown(elf, true);
