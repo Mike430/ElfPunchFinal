@@ -235,10 +235,14 @@ bool EP_Game::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 		50,
 		50);
 
+	int numUp = 0;
+	int numMissed = 0;
 	while (itterator < ELF_NUMBER && hit == false)
 	{
 		if (_elves[itterator]->_isUp)
 		{
+			numUp += 1;
+
 			cocos2d::Rect elfRect = cocos2d::Rect(
 				_elves[itterator]->_rootNode->getPositionX(),
 				_elves[itterator]->_rootNode->getPositionY(),
@@ -251,13 +255,15 @@ bool EP_Game::onTouchBegan(cocos2d::Touch* touch, cocos2d::Event* event)
 				_elves[itterator]->ElfHit(_elves[itterator]);
 			}
 			else
-				GameManager::GetInstance()->TakeFromMultiplier();
-
-			//if (sprite->intersectsRect(touch))
+				numMissed += 1;
 		}
 
 		itterator += 1;
 	}
+
+	if (numUp == numMissed)
+		GameManager::GetInstance()->TakeFromMultiplier();
+
 	return hit;
 }
 
